@@ -38,6 +38,7 @@ export function Sidebar(props) {
                   src={avatar}
                   height={80}
                   width={80} 
+                  alt=""
                 />
                 <p className="mt-3 font-bold text-orange-400 font-Ubuntu text-xl mb-3">
                   {props.nom}
@@ -49,6 +50,7 @@ export function Sidebar(props) {
                       src={email_img} 
                       height={30}
                       width={30} 
+                      alt=""
                     />
                     <p className="text-gray-400 ml-2 mt-3 font-semibold underline font-Vietnam mb-3 text-lg">{props.email}</p>
                   </div>
@@ -60,6 +62,7 @@ export function Sidebar(props) {
                           src={dashboard} 
                           height={40} 
                           width={40}
+                          alt=""
                         />
                         <span className="pb-1 ml-2 md:pb-0 text-xl text-center font-bold text-orange-400 font-Ubuntu">Tableau de bord</span>
                     </a>
@@ -70,6 +73,7 @@ export function Sidebar(props) {
                            src={books}
                            height={40} 
                            width={40}
+                           alt=""
                         />
                         <span className="pb-1 ml-2 md:pb-0 text-xl text-center font-bold text-orange-400 font-Ubuntu">Cours</span>
                     </a>
@@ -79,7 +83,8 @@ export function Sidebar(props) {
                         <Image
                           src={student}
                           height={40}  
-                          width={40} 
+                          width={40}
+                          alt="" 
                         />
                         <span className="pb-1 ml-2 md:pb-0 text-xl text-center font-bold text-orange-400 font-Ubuntu">Mes étudiants</span>
                     </a>

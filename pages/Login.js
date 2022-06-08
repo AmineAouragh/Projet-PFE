@@ -1,7 +1,6 @@
 import { supabase } from '../lib/initSupabase'
 import { useState, createContext } from 'react'
 import { useRouter } from 'next/router'
-import { LoginAsProfesseur } from '../components/login-as-professeur'
 
 
 export default function Login() {
