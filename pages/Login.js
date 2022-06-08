@@ -203,7 +203,7 @@ export default function Login() {
                   className="rounded-3xl bg-amber-400 hover:bg-amber-300 focus:ring-4 focus:outline-none focus:ring-offset-2 focus:ring-amber-300 w-1/2 py-2 px-5"
               >
                   <a className="text-gray-800 text-center mx-auto font-Ubuntu text-lg font-semibold">
-                    S'authentifier
+                    S&apos;authentifier
                   </a> 
                 </button>
                 </div>
@@ -252,7 +252,7 @@ export default function Login() {
                 className="rounded-3xl bg-amber-400 hover:bg-amber-300 focus:ring-4 focus:outline-none focus:ring-offset-2 focus:ring-amber-300 w-1/2 py-2 px-5"
             >
                 <a className="text-gray-800 text-center mx-auto font-Ubuntu text-lg font-semibold">
-                  S'authentifier
+                  S&apos;authentifier
                 </a> 
               </button>
               </div>
