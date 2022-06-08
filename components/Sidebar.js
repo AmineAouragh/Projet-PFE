@@ -65,7 +65,7 @@ export function Sidebar(props) {
                     </a>
                     </Link>
                     <Link href="/cours">
-                    <a class="flex flex-row items-center py-3 px-2">
+                    <a className="flex flex-row items-center py-3 px-2">
                         <Image
                            src={books}
                            height={40} 
