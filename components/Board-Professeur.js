@@ -3,7 +3,7 @@ import chat from '../public/chat.png'
 import course from '../public/online-course.png'
 import Link from 'next/link'
 
-export function Board() { 
+export function BoardProfesseur() { 
     
     return (
         <div className="main-content flex-1 bg-orange-100 pb-24 md:pb-5">
@@ -38,27 +38,7 @@ export function Board() {
                         </Link>
                     </div>
                 </div>
-                <div className="w-full md:w-1/2 xl:w-1/3 p-6">
-                    <div className="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-5">
-                        <div className="flex flex-row items-center mb-5">
-                            <div className="flex-shrink pr-4 relative">
-                                <Image
-                                  src={chat}
-                                  height={60}
-                                  width={60} 
-                                />
-                                <div className="rounded-full h-3 w-3 bg-green-500 absolute text-sm top-0 right-4 translate-x-1/2 -translate-y-1/3"></div>
-                            </div>
-                            <div className="flex-1 text-right md:text-center">
-                                <h3 className="font-bold text-xl uppercase text-gray-800 mb-3">Nouveaux messages</h3>
-                                <h5 className="font-semibold font-Ubuntu text-gray-600 text-md">15 messages actifs <span className="text-yellow-600"></span></h5>
-                            </div>
-                        </div>
-                        <button type="button" className="rounded-md px-3 py-1 bg-amber-500">
-                            <span className="text-lg font-bold text-gray-100">Envoyer un message</span>
-                        </button>
-                    </div>
-                </div>
+              
                 
             </div>
 

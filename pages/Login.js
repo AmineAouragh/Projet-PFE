@@ -1,5 +1,5 @@
 import { supabase } from '../lib/initSupabase'
-import { useState } from 'react'
+import { useState, createContext } from 'react'
 import { useRouter } from 'next/router'
 import { LoginAsProfesseur } from '../components/login-as-professeur'
 
@@ -14,6 +14,8 @@ export default function Login() {
   const [ codeP, setCodeP ] = useState('')
   const [ codeAdmin, setCodeAdmin ] = useState('')
   const [ suivantClicked, setSuivantClicked ] = useState(false)
+
+  const UserContext = createContext()
 
   const [ emailGot, setEmailGot ] = useState('')
 
