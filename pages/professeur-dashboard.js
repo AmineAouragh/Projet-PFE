@@ -1,4 +1,4 @@
-import { Sidebar } from '../components/Sidebar'
+import { Sidebar_Professeur } from '../components/Sidebar_Professeur'
 import { BoardProfesseur } from '../components/Board-Professeur'
 import { supabase } from '../lib/initSupabase'
 import { useState, useEffect } from 'react'
@@ -29,7 +29,7 @@ export default function ProfesseurDashboard() {
 
     return (
         <div className="flex flex-row">
-          <Sidebar nom={nom} email={email} category={categorie} université={université} />
+          <Sidebar_Professeur nom={nom} email={email} category={categorie} université={université} url="/professeur-dashboard" />
           <BoardProfesseur />
         </div>
     )

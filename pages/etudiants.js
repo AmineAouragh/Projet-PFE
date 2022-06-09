@@ -1,4 +1,4 @@
-import { Sidebar } from '../components/Sidebar'
+import { Sidebar_Professeur } from '../components/Sidebar_Professeur'
 import DataGrid from 'react-data-grid'
 import { supabase } from '../lib/initSupabase'
 import { useEffect, useState } from 'react'
@@ -6,11 +6,31 @@ import { useEffect, useState } from 'react'
 export default function TableEtudiants() {
 
   const [ students, setStudents ] = useState([])
-
+  const [ nom, setNom ] = useState('')
+  const [ email, setEmail ] = useState('')
+  const [ université, setUniversité ] = useState('')
+  const [ categorie, setCategorie ] = useState('')
 
   useEffect(() => {
     getStudentRecord()
   })
+
+  useEffect(() => {
+    getProfRecord()
+  })
+
+  async function getProfRecord() {
+      const { data: professeur, error } = await supabase
+      .from('professeur')
+      .select('nom, email, code, université, categorie')
+      .eq('nom', "test")
+      console.log(professeur[0].code)
+      setNom(professeur[0].nom)
+      setEmail(professeur[0].email)
+      setCategorie(professeur[0].categorie)
+      setUniversité(professeur[0].université)
+
+  }
 
   async function getStudentRecord() {
     const { data: etudiant, error } = await supabase
@@ -35,7 +55,7 @@ export default function TableEtudiants() {
      
     return (
         <div className="flex flex-row">
-            <Sidebar />
+            <Sidebar_Professeur nom={nom} email={email} category={categorie} université={université} />
             <div className="main-content flex-1 bg-orange-100 pb-24 md:pb-5">
             <div className="bg-gray-800 pt-3">
                 <div className="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">

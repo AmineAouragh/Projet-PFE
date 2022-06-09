@@ -10,26 +10,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 
-export function Sidebar(props) {
-
-  const [ nom, setNom ] = useState('')
-  const [ email, setEmail ] = useState('')
-  const [ université, setUniversité ] = useState('')
-
-  useEffect(() => {
-    getRecord()
-  })
-
-
-  async function getRecord() {
-
-    const { data, error } = await supabase
-    .from('professeur')
-    .select('nom, université, email')
-    setNom(data[data.length - 1].nom)
-    setUniversité(data[data.length - 1].université)
-    setEmail(data[data.length - 1].email)
-  }
+export function Sidebar_Professeur(props) {
 
     return (
         <div className="bg-gray-800 shadow-xl h-16 fixed bottom-0 md:relative md:h-screen z-10 w-full md:w-60">
@@ -44,7 +25,7 @@ export function Sidebar(props) {
                   {props.nom}
                 </p>
                 <div className="flex flex-col items-center justify-end">
-                  <p className="text-Light font-semibold italic font-Vietnam mb-1 text-lg">{props.category} at {props.université}</p>
+                  <p className="text-Light font-semibold italic font-Vietnam mb-1 text-lg">{props.category} à {props.université}</p>
                   <div className="flex flex-row items-center">
                     <Image
                       src={email_img} 

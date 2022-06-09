@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Sidebar } from '../components/Sidebar'
+import { Sidebar_Admin } from '../components/Sidebar_Admin'
 import { supabase } from '../lib/initSupabase'
 import { useEffect, useState } from 'react'
 import { BoardAdmin } from '../components/Board-Admin'
@@ -15,21 +15,23 @@ export default function AdminDashboard() {
     const [ nom, setNom ] = useState('')
     const [ categorie, setCategorie ] = useState('')
     const [ email, setEmail] = useState('')
+    const [ université, setUniversité ] = useState('')
 
     async function getAdminRecord() {
         const { data: admin, error } = await supabase
         .from('admin')
-        .select('nom, email, code, categorie')
+        .select('nom, email, code, categorie, université')
         .eq('nom', "test")
         console.log(admin[0].code)
         setNom(admin[0].nom)
         setEmail(admin[0].email)
         setCategorie(admin[0].categorie)
+        setUniversité(admin[0].université)
     }
 
     return (
         <div className="flex flex-row">
-            <Sidebar nom={nom} email={email} category={categorie} />
+            <Sidebar_Admin nom={nom} email={email} category={categorie} université={université} />
             <BoardAdmin />
         </div>
     )
