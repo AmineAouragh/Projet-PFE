@@ -14,10 +14,6 @@ export default function Login() {
   const [ codeAdmin, setCodeAdmin ] = useState('')
   const [ suivantClicked, setSuivantClicked ] = useState(false)
 
-  const UserContext = createContext()
-
-  const [ emailGot, setEmailGot ] = useState('')
-
   const router = useRouter()
  
 
