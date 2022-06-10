@@ -48,7 +48,7 @@ export function BoardAdmin() {
                                     </tr>
                                 </tbody>
                             </table>
-                            <Link href="/etudiants">
+                            <Link href="/professeurs">
                             <button type="button" className="rounded-md px-3 py-1 bg-orange-200">
                                 <span className="text-lg font-bold text-gray-600">Voir plus</span>
                             </button>

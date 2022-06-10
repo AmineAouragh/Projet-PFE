@@ -1,4 +1,3 @@
-import Login from './Login'
 import '../styles/globals.css'
 
 

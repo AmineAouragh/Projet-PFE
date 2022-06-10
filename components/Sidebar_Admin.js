@@ -47,17 +47,7 @@ export function Sidebar_Admin(props) {
                         <span className="pb-1 ml-2 md:pb-0 text-xl text-center font-bold text-orange-400 font-Ubuntu">Tableau de bord</span>
                     </a>
                     </Link>
-                    <Link href="/cours">
-                    <a className="flex flex-row items-center py-3 px-2">
-                        <Image
-                           src={books}
-                           height={40} 
-                           width={40}
-                           alt=""
-                        />
-                        <span className="pb-1 ml-2 md:pb-0 text-xl text-center font-bold text-orange-400 font-Ubuntu">Cours</span>
-                    </a>
-                    </Link>
+                   
                     <Link href="/etudiants">
                     <a className="py-3 px-2 flex flex-row items-center">
                         <Image
@@ -66,9 +56,20 @@ export function Sidebar_Admin(props) {
                           width={40}
                           alt="" 
                         />
-                        <span className="pb-1 ml-2 md:pb-0 text-xl text-center font-bold text-orange-400 font-Ubuntu">Mes étudiants</span>
+                        <span className="pb-1 ml-2 md:pb-0 text-xl text-center font-bold text-orange-400 font-Ubuntu">Etudiants</span>
                     </a>
-                    </Link>               
+                    </Link>   
+                    <Link href="/professeurs">
+                    <a className="py-3 px-2 flex flex-row items-center">
+                        <Image
+                          src={student}
+                          height={40}  
+                          width={40}
+                          alt="" 
+                        />
+                        <span className="pb-1 ml-2 md:pb-0 text-xl text-center font-bold text-orange-400 font-Ubuntu">Professeurs</span>
+                    </a>
+                    </Link>              
                 </ul>
             </div>
 
