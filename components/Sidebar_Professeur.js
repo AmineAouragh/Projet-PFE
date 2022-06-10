@@ -59,7 +59,7 @@ export function Sidebar_Professeur(props) {
                         <span className="pb-1 ml-2 md:pb-0 text-xl text-center font-bold text-orange-400 font-Ubuntu">Cours</span>
                     </a>
                     </Link>
-                    <Link href="/etudiants">
+                    <Link href="/mes-etudiants">
                     <a className="py-3 px-2 flex flex-row items-center">
                         <Image
                           src={student}

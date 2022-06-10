@@ -1,9 +1,9 @@
-import { Sidebar_Admin } from '../components/Sidebar_Admin'
+import { Sidebar_Professeur } from '../components/Sidebar_Professeur'
 import DataGrid from 'react-data-grid'
 import { supabase } from '../lib/initSupabase'
 import { useEffect, useState } from 'react'
 
-export default function TableEtudiantsA() {
+export default function TableEtudiantsP() {
 
   const [ students, setStudents ] = useState([])
   const [ nom, setNom ] = useState('')
@@ -55,7 +55,7 @@ export default function TableEtudiantsA() {
      
     return (
         <div className="flex flex-row">
-            <Sidebar_Admin nom={nom} email={email} category={categorie} université={université} />
+            <Sidebar_Professeur nom={nom} email={email} category={categorie} université={université} />
             <div className="main-content flex-1 bg-orange-100 pb-24 md:pb-5">
             <div className="bg-gray-800 pt-3">
                 <div className="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
