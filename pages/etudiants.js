@@ -16,19 +16,19 @@ export default function TableEtudiantsA() {
   })
 
   useEffect(() => {
-    getProfRecord()
+    getAdminRecord()
   })
 
-  async function getProfRecord() {
-      const { data: professeur, error } = await supabase
-      .from('professeur')
+  async function getAdminRecord() {
+      const { data: admin, error } = await supabase
+      .from('admin')
       .select('nom, email, code, université, categorie')
       .eq('nom', "test")
       console.log(professeur[0].code)
-      setNom(professeur[0].nom)
-      setEmail(professeur[0].email)
-      setCategorie(professeur[0].categorie)
-      setUniversité(professeur[0].université)
+      setNom(admin[0].nom)
+      setEmail(admin[0].email)
+      setCategorie(admin[0].categorie)
+      setUniversité(admin[0].université)
 
   }
 
