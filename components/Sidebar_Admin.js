@@ -1,5 +1,6 @@
 import avatar from '../public/avatar.png'
 import student from '../public/student.png'
+import teacher from '../public/teacher.png'
 import schedule from '../public/schedule.png'
 import books from '../public/books.png'
 import dashboard from '../public/dashboard.png'
@@ -62,7 +63,7 @@ export function Sidebar_Admin(props) {
                     <Link href="/professeurs">
                     <a className="py-3 px-2 flex flex-row items-center">
                         <Image
-                          src={student}
+                          src={teacher}
                           height={40}  
                           width={40}
                           alt="" 

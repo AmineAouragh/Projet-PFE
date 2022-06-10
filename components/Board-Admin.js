@@ -26,7 +26,7 @@ export function BoardAdmin() {
                                     <tr>
                                         <th className="text-left text-blue-900">Nom</th>
                                         <th className="text-left text-blue-900">Email</th>
-                                        <th className="text-left text-blue-900">ID</th>
+                                        <th className="text-left text-blue-900">Code</th>
                                     </tr>
                                 </thead>
 
@@ -48,7 +48,7 @@ export function BoardAdmin() {
                                     </tr>
                                 </tbody>
                             </table>
-                            <Link href="/professeurs">
+                            <Link href="">
                             <button type="button" className="rounded-md px-3 py-1 bg-orange-200">
                                 <span className="text-lg font-bold text-gray-600">Voir plus</span>
                             </button>
@@ -72,9 +72,9 @@ export function BoardAdmin() {
                             <table className="w-full p-5 mb-5 text-gray-700">
                                 <thead>
                                     <tr>
+                                        <th className="text-left text-blue-900">CNE</th>
                                         <th className="text-left text-blue-900">Nom</th>
                                         <th className="text-left text-blue-900">Email</th>
-                                        <th className="text-left text-blue-900">ID</th>
                                     </tr>
                                 </thead>
 

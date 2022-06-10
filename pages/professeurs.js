@@ -1,60 +1,63 @@
-
-import { useEffect, useState } from 'react'
-import { Sidebar_Admin } from '../components/Sidebar_Professeur'
+import { Sidebar_Admin } from '../components/Sidebar_Admin'
 import DataGrid from 'react-data-grid'
 import { supabase } from '../lib/initSupabase'
+import { useEffect, useState } from 'react'
 
-export default function TableProfesseurs() {
+export default function Professeurs() {
 
-  const [ professeurs, setProfesseurs ] = useState([])
+    useEffect(() => {
+        getProfRecord()
+    })
+
+    useEffect(() => {
+        getAdminRecord()
+    })
+
+    const [ professeurs, setProfesseurs ] = useState([])
   const [ nom, setNom ] = useState('')
+  const [ nomA, setNomA ] = useState('')
+  const [ emailA, setEmailA ] = useState('')
+  const [ universitéA, setUniversitéA ] = useState('')
+  const [ categorieA, setCategorieA ] = useState('')
   const [ email, setEmail ] = useState('')
   const [ université, setUniversité ] = useState('')
   const [ categorie, setCategorie ] = useState('')
 
-  useEffect(() => {
-    getProfRecord()
-  })
-
-  useEffect(() => {
-    getAdminRecord()
-  })
-
-  async function getAdminRecord() {
-    const { data: admin, error } = await supabase
-    .from('admin')
-    .select('nom, email, code, categorie, université')
-    .eq('nom', "test")
-    console.log(admin[0].code)
-    setNom(admin[0].nom)
-    setEmail(admin[0].email)
-    setCategorie(admin[0].categorie)
-    setUniversité(admin[0].université)
+  async function getProfRecord() {
+    const { data: professeur, error } = await supabase
+    .from('professeur')
+    .select('*')
+    setProfesseurs(professeur)
 }
 
-  async function getProfRecord() {
-      const { data: professeur, error } = await supabase
-      .from('professeur')
-      .select('*')
-      setProfesseurs(professeur)
+async function getAdminRecord() {
+    const { data: admin, error } = await supabase
+    .from('admin')
+    .select('nom, email, code, université, categorie')
+    .eq('nom', "test")
+    setNomA(admin[0].nom)
+    setEmailA(admin[0].email)
+    setCategorieA(admin[0].categorie)
+    setUniversitéA(admin[0].université)
+}
 
-  }
 
-    const columns = [
-        { key: 'nom', name: 'Nom & Prénom' },
-        { key: 'email', name: 'Email' },
-        {key: 'code', name: 'Code'},
-        {key: 'université', name: 'Université'}
-      ];
 
-      const rows = []
+const columns = [
 
-      professeurs.map(professeur => rows.push(professeur))
-      
-     
+    {key: 'nom', name: 'Nom & Prénom'},
+    { key: 'code', name: 'Code'},
+    {key: 'email', name: 'Email'},
+    {key: 'université', name: 'Université'}
+  ];
+
+  const rows = []
+
+  professeurs.map(professeur => rows.push(professeur))
+
     return (
         <div className="flex flex-row">
-            <Sidebar_Admin nom={nom} email={email} category={categorie} université={université} />
+            <Sidebar_Admin nom={nomA} email={emailA} category={categorieA} université={universitéA} />
             <div className="main-content flex-1 bg-orange-100 pb-24 md:pb-5">
             <div className="bg-gray-800 pt-3">
                 <div className="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
@@ -63,7 +66,6 @@ export default function TableProfesseurs() {
             </div>
             <DataGrid columns={columns} rows={rows} />
             </div>
-            
         </div>
     )
 }
