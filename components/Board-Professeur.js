@@ -23,6 +23,7 @@ export function BoardProfesseur() {
                                   src={course}
                                   height={60}
                                   width={60} 
+                                  alt=""
                                 />
                             </div>
                             <div className="flex-1 text-right md:text-center">
