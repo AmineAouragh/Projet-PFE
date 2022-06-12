@@ -4,6 +4,7 @@ import schedule from '../public/schedule.png'
 import books from '../public/books.png'
 import dashboard from '../public/dashboard.png'
 import email_img from '../public/email.png'
+import email from '../public/annonce.png'
 import Image from 'next/image'
 import { supabase } from '../lib/initSupabase'
 import { useEffect, useState } from 'react'
@@ -69,7 +70,18 @@ export function Sidebar_Professeur(props) {
                         />
                         <span className="pb-1 ml-2 md:pb-0 text-xl text-center font-bold text-orange-400 font-Ubuntu">Mes étudiants</span>
                     </a>
-                    </Link>               
+                    </Link>    
+                    <Link href="/mes-annonces">
+                    <a className="py-3 px-2 flex flex-row items-center">
+                        <Image
+                          src={email}
+                          height={40}  
+                          width={40}
+                          alt="" 
+                        />
+                        <span className="pb-1 ml-2 md:pb-0 text-xl text-center font-bold text-orange-400 font-Ubuntu">Annonces</span>
+                    </a>
+                    </Link>             
                 </ul>
             </div>
 

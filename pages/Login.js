@@ -13,6 +13,7 @@ export default function Login() {
   const [ codeP, setCodeP ] = useState('')
   const [ codeAdmin, setCodeAdmin ] = useState('')
   const [ suivantClicked, setSuivantClicked ] = useState(false)
+  const [ administrateur, setAdministrateur ] = useState([])
 
   const router = useRouter()
  
@@ -22,7 +23,7 @@ export default function Login() {
     .from('professeur')
     .select('email, code')
     .eq('nom', firstName)
-    
+    /*
     if (professeur[0].code == codeP && professeur[0].email == emailP) {
       console.log("welcome to your dashboard")
       setTimeout(() => router.push('/professeur-dashboard'), 1000)
@@ -33,6 +34,7 @@ export default function Login() {
     } else if (professeur[0].code != codeP && professeur[0].email != emailP) {
       console.log("wrong credentials")
     }
+    */
   }
 
   async function getAdminRecord() {
@@ -40,7 +42,9 @@ export default function Login() {
     .from('admin')
     .select('email, code')
     .eq('nom', firstName)
-    console.log(admin[0].code)
+    setAdministrateur(admin)
+    console.log(administrateur)
+    
     if (admin[0].code == codeAdmin && admin[0].email == emailAdmin) {
       console.log("welcome to your dashboard")
       setTimeout(() => router.push('/admin-dashboard'), 1000)
@@ -51,6 +55,7 @@ export default function Login() {
     } else if (admin[0].code != codeAdmin && admin[0].email != emailAdmin) {
       console.log("wrong credentials")
     }
+    
   }
 
   function loginProf() {
@@ -59,13 +64,6 @@ export default function Login() {
 
   function loginAdmin() {
     getAdminRecord()
-  }
-
-
-  async function signInWithEmail() {
-    const { user, error } = await supabase.auth.signIn({
-      email: email
-    })
   }
 
 

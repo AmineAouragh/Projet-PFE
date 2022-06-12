@@ -2,11 +2,15 @@ module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
+    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
   ],
   theme: {
     extend: {
       rotate: {
         '15': '15deg'
+      },
+      spacing: {
+        '128': '32rem',
       },
       colors: {
         OceanicaDark: "#164E63",
@@ -33,6 +37,7 @@ module.exports = {
     },
   },
   plugins: [
-    require('@tailwindcss/forms')
+    require('@tailwindcss/forms'),
+    require('flowbite/plugin')
   ],
 }

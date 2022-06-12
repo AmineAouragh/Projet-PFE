@@ -11,6 +11,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^1.35.3",
     "@tailwindcss/forms": "^0.5.0",
+    "flowbite": "^1.4.7",
     "next": "12.1.4",
     "react": "18.0.0",
     "react-data-grid": "^7.0.0-beta.13",
