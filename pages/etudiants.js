@@ -24,7 +24,6 @@ export default function TableEtudiantsA() {
       .from('admin')
       .select('nom, email, code, université, categorie')
       .eq('nom', "test")
-      console.log(professeur[0].code)
       setNom(admin[0].nom)
       setEmail(admin[0].email)
       setCategorie(admin[0].categorie)

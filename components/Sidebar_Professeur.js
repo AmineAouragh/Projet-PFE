@@ -39,7 +39,7 @@ export function Sidebar_Professeur(props) {
                 </div>
                 <ul className="flex flex-col mt-10 pl-10 text-center justify-around">
                   <Link href="/professeur-dashboard">
-                    <a className="flex flex-row items-center px-2 py-3">
+                    <a className="flex flex-row items-center px-2 py-3 hover:bg-gray-100 rounded-lg">
                         <Image 
                           src={dashboard} 
                           height={40} 
@@ -50,7 +50,7 @@ export function Sidebar_Professeur(props) {
                     </a>
                     </Link>
                     <Link href="/cours">
-                    <a className="flex flex-row items-center py-3 px-2">
+                    <a className="flex flex-row items-center py-3 px-2 hover:bg-gray-100 rounded-lg">
                         <Image
                            src={books}
                            height={40} 
@@ -61,7 +61,7 @@ export function Sidebar_Professeur(props) {
                     </a>
                     </Link>
                     <Link href="/mes-etudiants">
-                    <a className="py-3 px-2 flex flex-row items-center">
+                    <a className="py-3 px-2 flex flex-row items-center hover:bg-gray-100 rounded-lg">
                         <Image
                           src={student}
                           height={40}  
@@ -72,7 +72,7 @@ export function Sidebar_Professeur(props) {
                     </a>
                     </Link>    
                     <Link href="/mes-annonces">
-                    <a className="py-3 px-2 flex flex-row items-center">
+                    <a className="py-3 px-2 flex flex-row items-center hover:bg-gray-100 rounded-lg">
                         <Image
                           src={email}
                           height={40}  

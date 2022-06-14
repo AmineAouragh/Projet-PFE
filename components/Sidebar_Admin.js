@@ -9,6 +9,7 @@ import Image from 'next/image'
 import { supabase } from '../lib/initSupabase'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import add from '../public/add-user.png'
 
 export function Sidebar_Admin(props) {
 
@@ -36,9 +37,9 @@ export function Sidebar_Admin(props) {
                     <p className="text-gray-400 ml-2 mt-3 font-semibold underline font-Vietnam mb-3 text-lg">{props.email}</p>
                   </div>
                 </div>
-                <ul className="flex flex-col mt-10 pl-10 text-center justify-around">
+                <ul className="flex flex-col mt-10 pl-6 text-center justify-around">
                   <Link href="/admin-dashboard">
-                    <a className="flex flex-row items-center px-2 py-3">
+                    <a className="flex flex-row items-center px-2 py-3 hover:bg-gray-100 rounded-lg">
                         <Image 
                           src={dashboard} 
                           height={40} 
@@ -48,9 +49,21 @@ export function Sidebar_Admin(props) {
                         <span className="pb-1 ml-2 md:pb-0 text-xl text-center font-bold text-orange-400 font-Ubuntu">Tableau de bord</span>
                     </a>
                     </Link>
+
+                    <Link href="/ajouter-un-etudiant">
+                    <a className="py-3 px-2 flex flex-row items-center hover:bg-gray-100 rounded-lg">
+                        <Image
+                          src={add}
+                          height={40}  
+                          width={40}
+                          alt="" 
+                        />
+                        <span className="pb-1 ml-2 md:pb-0 text-xl text-center font-bold text-orange-400 font-Ubuntu">Nouveau étudiant</span>
+                    </a>
+                    </Link>
                    
                     <Link href="/etudiants">
-                    <a className="py-3 px-2 flex flex-row items-center">
+                    <a className="py-3 px-2 flex flex-row items-center hover:bg-gray-100 rounded-lg">
                         <Image
                           src={student}
                           height={40}  
@@ -61,7 +74,7 @@ export function Sidebar_Admin(props) {
                     </a>
                     </Link>   
                     <Link href="/professeurs">
-                    <a className="py-3 px-2 flex flex-row items-center">
+                    <a className="py-3 px-2 flex flex-row items-center hover:bg-gray-100 rounded-lg">
                         <Image
                           src={teacher}
                           height={40}  
