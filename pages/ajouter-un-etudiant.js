@@ -35,23 +35,23 @@ export default function AjouterEtudiant() {
                 </div>
             </div>
             <form className="m-5 flex flex-col">
-                <label htmlfor="name" className="mr-3">
+                <label htmlFor="name" className="mr-3">
                     Nom & Prénom:
                 </label>
                 <input type="text" id="name" name="name" required className="w-128 mb-4" />
-                <label htmlfor="cni" className="mr-3">
+                <label htmlFor="cni" className="mr-3">
                     CNI:
                 </label>
                 <input type="text" id="cni" name="cni" required className="w-128 mb-4" />
-                <label htmlfor="cne" className="mr-3">
+                <label htmlFor="cne" className="mr-3">
                     CNE:
                 </label>
                 <input type="text" id="cne" name="cne" required className="w-128 mb-4" />
-                <label htmlfor="email" className="mr-3">
+                <label htmlFor="email" className="mr-3">
                     Email:
                 </label>
                 <input type="email" id="email" name="email" required className="w-128 mb-4" />
-                <label htmlfor="filiere" className="mr-3">
+                <label htmlFor="filiere" className="mr-3">
                     Filière:
                 </label>
                 <select className="w-128 mb-4" name="filiere" id="filiere">
@@ -60,7 +60,7 @@ export default function AjouterEtudiant() {
                     <option name="smi s5/s6 bd" value="SMI S6 BD">SMI S5/S6 (BD)</option>
                     <option name="smi s5/s6 reseaux" value="SMI S6 RESEAUX">SMI S5/S6 (Reseaux)</option>
                 </select>
-                <label htmlfor="age" className="mr-3">
+                <label htmlFor="age" className="mr-3">
                     Age:
                 </label>
                 <input type="number" id="age" name="age" min="17" required className="w-128 mb-4" />
