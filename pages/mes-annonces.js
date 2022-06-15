@@ -9,7 +9,6 @@ export default function TableEtudiantsA() {
   const [ nom, setNom ] = useState('')
   const [ email, setEmail ] = useState('')
   const [ université, setUniversité ] = useState('')
-  const [ categorie, setCategorie ] = useState('')
   const [ textarea, openTextarea ] = useState(false)
   const [ message, setMessage ] = useState('')
 
@@ -25,12 +24,10 @@ export default function TableEtudiantsA() {
   async function getProfRecord() {
       const { data: professeur, error } = await supabase
       .from('professeur')
-      .select('nom, email, code, université, categorie')
+      .select('nom, email, code, université')
       .eq('nom', "test")
-      console.log(professeur[0].code)
       setNom(professeur[0].nom)
       setEmail(professeur[0].email)
-      setCategorie(professeur[0].categorie)
       setUniversité(professeur[0].université)
 
   }
@@ -40,7 +37,7 @@ export default function TableEtudiantsA() {
     const { data, error } = await supabase
     .from('annonce')
     .insert([
-        {'message': message, 'émetteur': nom}
+        {'message': message, 'emetteur': nom}
     ])
     setTimeout(() => getAnnonceRecord(), 1500)
   }
@@ -54,18 +51,18 @@ export default function TableEtudiantsA() {
 
     const columns = [
         { key: 'message', name: 'Message' },
-        {key: 'émetteur', name: 'Emetteur'},
-        {key: 'created_at', name: 'Envoyé le'}
+        { key: 'emetteur', name: 'Emetteur'},
+        { key: 'created_at', name: 'Envoyé le'}
     ]
 
-      const rows = []
+    const rows = []
 
-      annonces.map(message => rows.push(message))
+    annonces.map(message => rows.push(message))
       
      
     return (
         <div className="flex flex-row relative">
-            <Sidebar_Professeur nom={nom} email={email} category={categorie} université={université} />
+            <Sidebar_Professeur nom={nom} email={email} université={université} />
             <div className="main-content flex-1 bg-orange-100 pb-24 md:pb-5">
             <div className="bg-gray-800 pt-3">
                 <div className="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">

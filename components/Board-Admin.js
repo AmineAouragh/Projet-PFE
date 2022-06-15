@@ -21,36 +21,10 @@ export function BoardAdmin() {
                             <h5 className="font-bold uppercase text-gray-600">Professeurs</h5>
                         </div>
                         <div className="p-5">
-                            <table className="w-full p-5 mb-5 text-gray-700">
-                                <thead>
-                                    <tr>
-                                        <th className="text-left text-blue-900">Nom</th>
-                                        <th className="text-left text-blue-900">Email</th>
-                                        <th className="text-left text-blue-900">Code</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <tr>
-                                        <td>Amer Sikira</td>
-                                        <td>something@gmail.com</td>
-                                        <td>3598</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dagobert Renouf</td>
-                                        <td>something1@gmail.com</td>
-                                        <td>2711</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Magdalena</td>
-                                        <td>something2@gmail.com</td>
-                                        <td>6958</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <p className="text-lg font-bold mb-5">Ici vous pouvez consulter la liste de professeurs</p>
                             <Link href="/professeurs">
-                            <button type="button" className="rounded-md px-3 py-1 bg-orange-200">
-                                <span className="text-lg font-bold text-gray-600">Voir plus</span>
+                            <button type="button" className="rounded-lg px-3 py-2 bg-orange-400">
+                                <span className="text-lg font-bold text-Light">Afficher</span>
                             </button>
                             </Link>
                         </div>
@@ -69,36 +43,10 @@ export function BoardAdmin() {
                             <h5 className="font-bold uppercase text-gray-600">Etudiants</h5>
                         </div>
                         <div className="p-5">
-                            <table className="w-full p-5 mb-5 text-gray-700">
-                                <thead>
-                                    <tr>
-                                        <th className="text-left text-blue-900">CNE</th>
-                                        <th className="text-left text-blue-900">Nom</th>
-                                        <th className="text-left text-blue-900">Email</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <tr>
-                                        <td>Amer Sikira</td>
-                                        <td>something@gmail.com</td>
-                                        <td>3598</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dagobert Renouf</td>
-                                        <td>something1@gmail.com</td>
-                                        <td>2711</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Magdalena</td>
-                                        <td>something2@gmail.com</td>
-                                        <td>6958</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <p className="text-lg font-bold mb-5">Ici vous pouvez consulter votre liste d'étudiants</p>
                             <Link href="/etudiants">
-                            <button type="button" className="rounded-md px-3 py-1 bg-orange-200">
-                                <span className="text-lg font-bold text-gray-600">Voir plus</span>
+                            <button type="button" className="rounded-lg px-3 py-2 bg-orange-400">
+                                <span className="text-lg font-bold text-Light">Afficher</span>
                             </button>
                             </Link>
                         </div>

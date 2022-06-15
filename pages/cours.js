@@ -8,7 +8,6 @@ export default function Cours() {
     const [ nom, setNom ] = useState('')
     const [ email, setEmail ] = useState('')
     const [ université, setUniversité ] = useState('')
-    const [ categorie, setCategorie ] = useState('')
     const [ file, setFile ] = useState()
     const [ url, setUrl ] = useState('')
 
@@ -19,12 +18,11 @@ export default function Cours() {
       async function getProfRecord() {
           const { data: professeur, error } = await supabase
           .from('professeur')
-          .select('nom, email, code, université, categorie')
+          .select('nom, email, code, université')
           .eq('nom', "test")
           console.log(professeur[0].code)
           setNom(professeur[0].nom)
           setEmail(professeur[0].email)
-          setCategorie(professeur[0].categorie)
           setUniversité(professeur[0].université)
     
       }
@@ -34,8 +32,7 @@ export default function Cours() {
       const handleSubmit = async (e) => {
           e.preventDefault()
 
-          const fileExt = file.name.split('.').pop()
-            const fileName = `${Math.random()}.${fileExt}`
+            const fileName = `${file.name}`
             const filePath = `${fileName}`
 
           if (file) {
@@ -48,10 +45,10 @@ export default function Cours() {
         .storage
         .from('cours')
         .download(filePath)
-        console.log(data)
 
         const url = URL.createObjectURL(data)
         setUrl(url)
+        
         const { list, err } = await supabase
         .storage
         .from('cours')
@@ -61,7 +58,7 @@ export default function Cours() {
 
     return (
         <div className="flex flex-row">
-            <Sidebar_Professeur nom={nom} email={email} category={categorie} université={université} />
+            <Sidebar_Professeur nom={nom} email={email} université={université} />
             <div className="main-content flex-1 bg-orange-100 pb-24 md:pb-5">
               <div className="bg-gray-800 pt-3">
                 <div className="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">

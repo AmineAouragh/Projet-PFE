@@ -26,7 +26,7 @@ export function Sidebar_Professeur(props) {
                   {props.nom}
                 </p>
                 <div className="flex flex-col items-center justify-end">
-                  <p className="text-Light font-semibold italic font-Vietnam mb-1 text-lg">{props.category} à {props.université}</p>
+                  <p className="text-Light font-semibold italic font-Vietnam mb-1 text-lg">Professeur à {props.université}</p>
                   <div className="flex flex-row items-center">
                     <Image
                       src={email_img} 

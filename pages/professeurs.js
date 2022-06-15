@@ -21,7 +21,6 @@ export default function Professeurs() {
   const [ categorieA, setCategorieA ] = useState('')
   const [ email, setEmail ] = useState('')
   const [ université, setUniversité ] = useState('')
-  const [ categorie, setCategorie ] = useState('')
 
   async function getProfRecord() {
     const { data: professeur, error } = await supabase
@@ -33,11 +32,10 @@ export default function Professeurs() {
 async function getAdminRecord() {
     const { data: admin, error } = await supabase
     .from('admin')
-    .select('nom, email, code, université, categorie')
+    .select('nom, email, code, université')
     .eq('nom', "test")
     setNomA(admin[0].nom)
     setEmailA(admin[0].email)
-    setCategorieA(admin[0].categorie)
     setUniversitéA(admin[0].université)
 }
 
@@ -57,7 +55,7 @@ const columns = [
 
     return (
         <div className="flex flex-row">
-            <Sidebar_Admin nom={nomA} email={emailA} category={categorieA} université={universitéA} />
+            <Sidebar_Admin nom={nomA} email={emailA} université={universitéA} bgProfColor="bg-gray-100" />
             <div className="main-content flex-1 bg-orange-100 pb-24 md:pb-5">
             <div className="bg-gray-800 pt-3">
                 <div className="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">

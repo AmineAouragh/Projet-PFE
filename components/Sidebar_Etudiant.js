@@ -1,17 +1,15 @@
 import avatar from '../public/avatar.png'
-import student from '../public/student.png'
-import teacher from '../public/teacher.png'
-import schedule from '../public/schedule.png'
-import books from '../public/books.png'
+import files from '../public/data-storage.png'
 import dashboard from '../public/dashboard.png'
 import email_img from '../public/email.png'
 import Image from 'next/image'
+import message from '../public/annonce.png'
 import { supabase } from '../lib/initSupabase'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import add from '../public/add-user.png'
+import infos from '../public/file.png'
 
-export function Sidebar_Admin(props) {
+export function Sidebar_Etudiant(props) {
 
     return (
         <div className="bg-gray-800 shadow-xl h-16 fixed bottom-0 md:relative md:h-screen z-10 w-full md:w-60">
@@ -26,7 +24,6 @@ export function Sidebar_Admin(props) {
                   {props.nom}
                 </p>
                 <div className="flex flex-col items-center justify-end">
-                  <p className="text-Light font-semibold italic font-Vietnam mb-1 text-lg">Administrateur à {props.université}</p>
                   <div className="flex flex-row items-center">
                     <Image
                       src={email_img} 
@@ -38,68 +35,54 @@ export function Sidebar_Admin(props) {
                   </div>
                 </div>
                 <ul className="flex flex-col mt-10 pl-6 text-center justify-around">
-                  <Link href="/admin-dashboard">
-                    <a className={`flex flex-row items-center px-2 py-3 ${props.bgDashColor}  rounded-lg`}>
+                  <Link href="/etudiant-dashboard">
+                    <a className="flex flex-row items-center px-2 py-3 hover:bg-gray-100 rounded-lg">
                         <Image 
                           src={dashboard} 
                           height={40} 
                           width={40}
                           alt=""
                         />
-                        <span className="pb-1 ml-2 md:pb-0 text-lg text-center font-bold text-orange-400 font-Ubuntu">Tableau de bord</span>
+                        <span className="pb-1 ml-2 md:pb-0 text-xl text-center font-bold text-orange-400 font-Ubuntu">Tableau de bord</span>
                     </a>
                     </Link>
 
-                    <Link href="/ajouter-un-etudiant">
-                    <a className={`py-3 px-2 flex flex-row items-center ${props.bgNewColor} rounded-lg`}>
+                    <Link href="/mes-informations-personelles">
+                    <a className="py-3 px-2 flex flex-row items-center hover:bg-gray-100 rounded-lg">
                         <Image
-                          src={add}
+                          src={infos}
                           height={40}  
                           width={40}
                           alt="" 
                         />
-                        <span className="pb-1 ml-2 md:pb-0 text-lg text-center font-bold text-orange-400 font-Ubuntu">Nouveau étudiant</span>
-                    </a>
-                    </Link>
-
-                    <Link href="/ajouter-un-professeur">
-                    <a className={`py-3 px-2 flex flex-row items-center ${props.bgNewProfColor} rounded-lg`}>
-                        <Image
-                          src={add}
-                          height={40}  
-                          width={40}
-                          alt="" 
-                        />
-                        <span className="pb-1 ml-2 md:pb-0 text-lg text-center font-bold text-orange-400 font-Ubuntu">Nouveau professeur</span>
+                        <span className="pb-1 ml-2 md:pb-0 text-xl text-center font-bold text-orange-400 font-Ubuntu">Mes informations</span>
                     </a>
                     </Link>
                    
-                    <Link href="/etudiants">
-                    <a className={`py-3 px-2 flex flex-row items-center ${props.bgEtudColor} rounded-lg`}>
+                    <Link href="/messages">
+                    <a className="py-3 px-2 flex flex-row items-center hover:bg-gray-100 rounded-lg">
                         <Image
-                          src={student}
+                          src={message}
                           height={40}  
                           width={40}
                           alt="" 
                         />
-                        <span className="pb-1 ml-2 md:pb-0 text-lg text-center font-bold text-orange-400 font-Ubuntu">Etudiants</span>
+                        <span className="pb-1 ml-2 md:pb-0 text-xl text-center font-bold text-orange-400 font-Ubuntu">Messages</span>
                     </a>
                     </Link>   
-                    <Link href="/professeurs">
-                    <a className={`py-3 px-2 flex flex-row items-center ${props.bgProfColor} rounded-lg`}>
+                    <Link href="/fichiers">
+                    <a className="py-3 px-2 flex flex-row items-center hover:bg-gray-100 rounded-lg">
                         <Image
-                          src={teacher}
+                          src={files}
                           height={40}  
                           width={40}
                           alt="" 
                         />
-                        <span className="pb-1 ml-2 md:pb-0 text-lg text-center font-bold text-orange-400 font-Ubuntu">Professeurs</span>
+                        <span className="pb-1 ml-2 md:pb-0 text-xl text-center font-bold text-orange-400 font-Ubuntu">Fichiers</span>
                     </a>
                     </Link>              
                 </ul>
             </div>
-
-
         </div>
     )
 }

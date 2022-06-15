@@ -9,7 +9,6 @@ export default function TableEtudiantsA() {
   const [ nom, setNom ] = useState('')
   const [ email, setEmail ] = useState('')
   const [ université, setUniversité ] = useState('')
-  const [ categorie, setCategorie ] = useState('')
 
   useEffect(() => {
     getStudentRecord()
@@ -22,11 +21,10 @@ export default function TableEtudiantsA() {
   async function getAdminRecord() {
       const { data: admin, error } = await supabase
       .from('admin')
-      .select('nom, email, code, université, categorie')
+      .select('nom, email, code, université')
       .eq('nom', "test")
       setNom(admin[0].nom)
       setEmail(admin[0].email)
-      setCategorie(admin[0].categorie)
       setUniversité(admin[0].université)
 
   }
@@ -43,8 +41,9 @@ export default function TableEtudiantsA() {
         { key: 'CNI', name: 'CNI' },
         {key: 'nom', name: 'Nom & Prénom'},
         { key: 'age', name: 'Age'},
+        {key: 'filière', name: 'Filière'},
         {key: 'email', name: 'Email'},
-        {key: 'filière', name: 'Filière'}
+        {key: 'code', name: 'Code'}
       ];
 
       const rows = []
@@ -54,7 +53,7 @@ export default function TableEtudiantsA() {
      
     return (
         <div className="flex flex-row">
-            <Sidebar_Admin nom={nom} email={email} category={categorie} université={université} />
+            <Sidebar_Admin nom={nom} email={email} université={université} bgEtudColor="bg-gray-100" />
             <div className="main-content flex-1 bg-orange-100 pb-24 md:pb-5">
             <div className="bg-gray-800 pt-3">
                 <div className="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">

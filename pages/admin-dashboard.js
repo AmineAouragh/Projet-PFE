@@ -13,25 +13,23 @@ export default function AdminDashboard() {
     const router = useRouter()
 
     const [ nom, setNom ] = useState('')
-    const [ categorie, setCategorie ] = useState('')
     const [ email, setEmail] = useState('')
     const [ université, setUniversité ] = useState('')
 
     async function getAdminRecord() {
         const { data: admin, error } = await supabase
         .from('admin')
-        .select('nom, email, code, categorie, université')
+        .select('nom, email, code, université')
         .eq('nom', "test")
         console.log(admin[0].code)
         setNom(admin[0].nom)
         setEmail(admin[0].email)
-        setCategorie(admin[0].categorie)
         setUniversité(admin[0].université)
     }
 
     return (
         <div className="flex flex-row">
-            <Sidebar_Admin nom={nom} email={email} category={categorie} université={université} />
+            <Sidebar_Admin nom={nom} email={email} université={université} bgDashColor="bg-gray-100" />
             <BoardAdmin />
         </div>
     )

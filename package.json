@@ -15,7 +15,8 @@
     "next": "12.1.4",
     "react": "18.0.0",
     "react-data-grid": "^7.0.0-beta.13",
-    "react-dom": "18.0.0"
+    "react-dom": "18.0.0",
+    "react-pdf": "^5.7.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.4",

@@ -14,6 +14,9 @@ export default function Login() {
   const [ codeAdmin, setCodeAdmin ] = useState('')
   const [ suivantClicked, setSuivantClicked ] = useState(false)
   const [ administrateur, setAdministrateur ] = useState([])
+  const [ etudiant, setEtudiant ] = useState([])
+  const [ codeEtud, setCodeEtudiant ] = useState('')
+  const [ emailEtud, setEmailEtudiant ] = useState('')
 
   const router = useRouter()
  
@@ -23,18 +26,11 @@ export default function Login() {
     .from('professeur')
     .select('email, code')
     .eq('nom', firstName)
-    /*
+    
     if (professeur[0].code == codeP && professeur[0].email == emailP) {
       console.log("welcome to your dashboard")
       setTimeout(() => router.push('/professeur-dashboard'), 1000)
-    } else if (professeur[0].code == codeP && professeur[0].email != emailP) {
-      console.log("wrong email")
-    } else if (professeur[0].code != codeP && professeur[0].email == emailP) {
-      console.log("wrong code")
-    } else if (professeur[0].code != codeP && professeur[0].email != emailP) {
-      console.log("wrong credentials")
     }
-    */
   }
 
   async function getAdminRecord() {
@@ -48,12 +44,24 @@ export default function Login() {
     if (admin[0].code == codeAdmin && admin[0].email == emailAdmin) {
       console.log("welcome to your dashboard")
       setTimeout(() => router.push('/admin-dashboard'), 1000)
-    } else if (admin[0].code == codeAdmin && admin[0].email != emailAdmin) {
-      console.log("wrong email")
-    } else if (admin[0].code != codeAdmin && admin[0].email == emailAdmin) {
-      console.log("wrong code")
-    } else if (admin[0].code != codeAdmin && admin[0].email != emailAdmin) {
-      console.log("wrong credentials")
+    } else {
+      alert("Error")
+    }
+    
+  }
+
+  async function getStudentRecord() {
+    const { data: etudiant, error } = await supabase
+    .from('etudiant')
+    .select('email, code')
+    .eq('nom', firstName)
+    setEtudiant(etudiant)
+    
+    if (etudiant[0].code == codeEtud && etudiant[0].email == emailEtud) {
+      console.log("welcome to your dashboard")
+      setTimeout(() => router.push('/etudiant-dashboard'), 1000)
+    } else {
+      alert("Error")
     }
     
   }
@@ -64,6 +72,10 @@ export default function Login() {
 
   function loginAdmin() {
     getAdminRecord()
+  }
+
+  function loginEtudiant() {
+    getStudentRecord()
   }
 
 
@@ -240,21 +252,69 @@ export default function Login() {
             </div>
             
               <div className="mx-auto flex flex-row w-2/3 items-center justify-center">
-            <button 
-              type="button"
-                 onClick={loginAdmin}
-                className="rounded-3xl bg-amber-400 hover:bg-amber-300 focus:ring-4 focus:outline-none focus:ring-offset-2 focus:ring-amber-300 w-1/2 py-2 px-5"
-            >
-                <a className="text-gray-800 text-center mx-auto font-Ubuntu text-lg font-semibold">
-                  Authentifier
-                </a> 
-              </button>
+                <button 
+                  type="button"
+                  onClick={loginAdmin}
+                  className="rounded-3xl bg-amber-400 hover:bg-amber-300 focus:ring-4 focus:outline-none focus:ring-offset-2 focus:ring-amber-300 w-1/2 py-2 px-5"
+                >
+                  <a className="text-gray-800 text-center mx-auto font-Ubuntu text-lg font-semibold">
+                    Authentifier
+                  </a> 
+                </button>
               </div>
-              </div>
-            </div>
           </div>
         </div>
-        }
-        </>
-    )
+      </div>
+      </div>
+    }
+    {
+          (suivantClicked && catégorie == "Etudiant") && 
+          <div className="flex flex-col absolute justify-center items-center w-full h-full bg-orange-300">
+          <div className="bg-optimistBrand absolute w-full h-full flex justify-center items-center">
+            <div className="flex flex-col lg:flex-row h-2/3 shadow-lg relative w-4/5 lg:w-1/3">
+              <div className="h-full w-full flex flex-col justify-center items-center bg-white px-1 xl:px-4 py-8 rounded-xl">
+              <div className="flex flex-col items-start justify-center mx-auto mb-8 w-1/2">
+              <p className="text-2xl mb-5 font-extrabold font-Ubuntu w-full text-gray-700">{message} {firstName}</p>
+              <label labelfor="email" className="text-md text-gray-800 font-bold mb-3">Votre Email</label>
+              <input 
+                type="email" 
+                name="email" 
+                id="email" 
+                autoComplete="off"
+                className="focus:ring-indigo-500 focus:border-indigo-500 w-full sm:text-sm border-gray-300 rounded-md" 
+                value={emailEtud}
+                onChange={e => setEmailEtudiant(e.target.value)}
+              />
+            </div>
+            <div className="flex flex-col items-start justify-center mx-auto w-1/2 mb-8">
+              <label labelfor="code" className="text-md text-gray-800 font-bold mb-3">Votre Code</label>
+              <input 
+                type="text" 
+                name="code" 
+                id="code" 
+                autoComplete="off"
+                className="focus:ring-indigo-500 focus:border-indigo-500 w-full sm:text-sm border-gray-300 rounded-md" 
+                value={codeEtud}
+                onChange={e => setCodeEtudiant(e.target.value)}
+              />
+            </div>
+            
+              <div className="mx-auto flex flex-row w-2/3 items-center justify-center">
+                <button 
+                  type="button"
+                  onClick={loginEtudiant}
+                  className="rounded-3xl bg-amber-400 hover:bg-amber-300 focus:ring-4 focus:outline-none focus:ring-offset-2 focus:ring-amber-300 w-1/2 py-2 px-5"
+                >
+                  <a className="text-gray-800 text-center mx-auto font-Ubuntu text-lg font-semibold">
+                    Authentifier
+                  </a> 
+                </button>
+              </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    }
+    </>
+  )
 }
