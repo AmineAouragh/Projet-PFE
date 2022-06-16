@@ -51,7 +51,7 @@ export function BoardProfesseur() {
                             <h5 className="font-bold uppercase text-gray-600">Mes étudiants</h5>
                         </div>
                         <div className="p-5">
-                            <p className="text-lg font-bold mb-5">Ici vous pouvez consulter votre liste d'étudiants</p>
+                            <p className="text-lg font-bold mb-5">Ici vous pouvez consulter votre liste d&apos;étudiants</p>
                             <Link href="/etudiants">
                             <button type="button" className="rounded-lg px-3 py-2 bg-orange-400">
                                 <span className="text-xl font-bold text-Light">Afficher</span>
