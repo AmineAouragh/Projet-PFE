@@ -46,7 +46,7 @@ export default function Messages() {
               <div className="m-5">
                 {
                   annonces.map(annonce => 
-                    <div className="mb-4">
+                    <div className="mb-4" key={annonce.id}>
                       <p className="text-gray-800 font-extrabold" key={annonce.id}>Envoyé par {annonce.emetteur}</p>
                       <p className="text-lg text-gray-600 font-bold" key={annonce.id}>{annonce.message}</p>
                     </div>
