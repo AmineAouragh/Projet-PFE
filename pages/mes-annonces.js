@@ -25,7 +25,8 @@ export default function TableEtudiantsA() {
       const { data: professeur, error } = await supabase
       .from('professeur')
       .select('nom, email, code, université')
-      .eq('nom', "test")
+      .order('nom', {ascending: true})
+      .limit(1)
       setNom(professeur[0].nom)
       setEmail(professeur[0].email)
       setUniversité(professeur[0].université)

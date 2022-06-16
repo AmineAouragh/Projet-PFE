@@ -19,8 +19,8 @@ export default function Cours() {
           const { data: professeur, error } = await supabase
           .from('professeur')
           .select('nom, email, code, université')
-          .eq('nom', "test")
-          console.log(professeur[0].code)
+          .order('nom', {ascending: true})
+          .limit(1)
           setNom(professeur[0].nom)
           setEmail(professeur[0].email)
           setUniversité(professeur[0].université)
@@ -32,8 +32,8 @@ export default function Cours() {
       const handleSubmit = async (e) => {
           e.preventDefault()
 
-            const fileName = `${file.name}`
-            const filePath = `${fileName}`
+            const fileName = file.name
+            const filePath = fileName
 
           if (file) {
             
@@ -48,12 +48,7 @@ export default function Cours() {
 
         const url = URL.createObjectURL(data)
         setUrl(url)
-        
-        const { list, err } = await supabase
-        .storage
-        .from('cours')
-        .list()
-        console.log(list)
+
       }
 
     return (
@@ -69,11 +64,11 @@ export default function Cours() {
               <label htmlFor="cours" className="font-Secular text-xl mb-10 font-bold">Ajouter un cours</label>
               <br />
               <input onChange={e => setFile(e.target.files[0])} type="file" id="cours" accept=".pdf" name="cours" />
-              {
-                  !url &&  <button type="submit" className="bg-orange-400 rounded-xl px-5 py-2">Envoyer</button>
-              }
+              
+              <button type="submit" className="bg-orange-400 rounded-xl px-5 py-2">Envoyer</button>
               </form>
-              {
+
+              {/*
                   url && (
                     <>
                     <button type="button" className="bg-green-500 px-5 py-3 rounded-xl ml-8 shadow-lg">
@@ -83,7 +78,7 @@ export default function Cours() {
                     </button>
                     </>
                   )
-              }
+                  */}
               
             </div>
         </div>

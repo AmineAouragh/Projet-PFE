@@ -102,15 +102,12 @@ export default function Login() {
                 <div className="h-full w-full flex flex-col justify-center items-center bg-white px-1 xl:px-4 py-8 rounded-xl">
                 <>
                   <div className="w-1/2 mb-3">
-                    <label labelfor="fullname" className="text-md font-bold mb-8 text-gray-800">
+                    <label htmlFor="fullname" className="text-md font-bold mb-8 text-gray-800">
                       Nom et Prénom
                     </label>
                     <div className="relative rounded-md shadow-sm">
                       <input
-                        type="text"
-                        name="fullname"
-                        id="fullname"
-                        autoComplete="off"
+                        type="text" name="fullname" id="fullname" autoComplete="off"
                         onChange={e => setFirstName(e.target.value)}
                         value={firstName}
                         className="focus:ring-indigo-500 focus:border-indigo-500 w-full sm:text-sm border-gray-300 rounded-md"
@@ -121,32 +118,20 @@ export default function Login() {
                   <div className="w-1/2 mb-3">
                     <p className="text-md text-gray-800 font-bold mb-3">Etes vous administrateur, professeur ou étudiant?</p>
                     <div onChange={e => setCatégorie(e.target.value)}>
-                    <input type="radio" id="admin" name="catégorie" value="Administrateur" className="mr-3" />
-                    <label labelfor="admin">Administrateur </label><br />
-                    <input type="radio" id="professeur" name="catégorie" value="Professeur" className="mr-3" />
-                    <label labelfor="professeur">Professeur </label><br />
-                    <input type="radio" id="etudiant" name="catégorie" value="Etudiant" className="mr-3" />
-                    <label labelfor="étudiant">Etudiant </label>
+                    <input type="radio" id="admin" name="catégorie" value="Administrateur" className="mr-3" /><label htmlFor="admin">Administrateur </label><br />
+                    <input type="radio" id="professeur" name="catégorie" value="Professeur" className="mr-3" /><label htmlFor="professeur">Professeur </label><br />
+                    <input type="radio" id="etudiant" name="catégorie" value="Etudiant" className="mr-3" /><label htmlFor="étudiant">Etudiant </label>
                     </div>
                   </div>
                   <div className="w-1/2 mt-3 mb-24 mx-auto">
-                <label labelfor="universités" className="text-md font-bold mb-3 text-gray-800">
+                <label htmlFor="universités" className="text-md font-bold mb-3 text-gray-800">
                   Choisissez votre université
                 </label>
-                <select 
-                  name="universités" 
-                  onChange={e => setUniversité(e.target.value)} 
-                  value={université} 
-                  id="universités" 
+                <select name="universités" onChange={e => setUniversité(e.target.value)} value={université} id="universités" 
                   className="relative shadow-sm focus:ring-indigo-500 focus:border-indigo-500 w-full sm:text-sm border-gray-300 rounded-md"
                 >
-                  <option value="Université Chouaib Doukkali - Fac des Sciences El Jadida">
-                    Université Chouaib Doukkali - Fac des Sciences El Jadida
-                  </option>
-                  <option value="Université Chouaib Doukkali - Fac des Lettres El Jadida">
-                    Université Chouaib Doukkali - Fac des Lettres El Jadida
-                  </option>
-                 
+                  <option value="Université Chouaib Doukkali - Fac des Sciences El Jadida">Université Chouaib Doukkali - Fac des Sciences El Jadida</option>
+                  <option value="Université Chouaib Doukkali - Fac des Lettres El Jadida">Université Chouaib Doukkali - Fac des Lettres El Jadida</option>
                 </select>
                 </div>
                   <button 
