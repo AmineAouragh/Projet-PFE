@@ -19,8 +19,8 @@ export default function MesInfos() {
     async function getStudentRecord() {
         const { data: etudiant, error } = await supabase
         .from('etudiant')
-        .select('nom, email, CNI, CNE, code, filière, age')
-        .order('nom', {ascending: true})
+        .select('id, nom, email, CNI, CNE, code, filière, age')
+        .order('id', {ascending: false})
         .limit(1)
         setNomEtud(etudiant[0].nom)
         setEmailEtud(etudiant[0].email)

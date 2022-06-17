@@ -16,8 +16,8 @@ export default function ProfesseurDashboard() {
   async function getProfRecord() {
       const { data: professeur, error } = await supabase
       .from('professeur')
-      .select('nom, email, code, université')
-      .order('nom', {ascending: true})
+      .select('id, nom, email, code, université')
+      .order('id', {ascending: false})
       .limit(1)
       setNom(professeur[0].nom)
       setEmail(professeur[0].email)

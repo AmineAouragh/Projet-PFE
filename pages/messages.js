@@ -21,8 +21,8 @@ export default function Messages() {
     async function getStudentRecord() {
         const { data: etudiant, error } = await supabase
         .from('etudiant')
-        .select('nom, email')
-        .order('nom', {ascending: true})
+        .select('id, nom, email')
+        .order('id', {ascending: false})
         .limit(1)
         setNomEtud(etudiant[0].nom)
         setEmailEtud(etudiant[0].email)
