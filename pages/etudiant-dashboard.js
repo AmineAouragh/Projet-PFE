@@ -19,7 +19,8 @@ export default function EtudiantDashboard() {
         const { data: etudiant, error } = await supabase
         .from('etudiant')
         .select('nom, email, code, CNI, CNE, age')
-        .eq('nom', "Amine Aouragh")
+        .order('nom', {ascending: true})
+        .limit(1)
         setNom(etudiant[0].nom)
         setEmail(etudiant[0].email)
     }

@@ -22,7 +22,8 @@ export default function Messages() {
         const { data: etudiant, error } = await supabase
         .from('etudiant')
         .select('nom, email')
-        .eq('nom', "Amine Aouragh")
+        .order('nom', {ascending: true})
+        .limit(1)
         setNomEtud(etudiant[0].nom)
         setEmailEtud(etudiant[0].email)
     }

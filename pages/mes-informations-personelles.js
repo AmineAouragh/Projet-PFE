@@ -20,7 +20,8 @@ export default function MesInfos() {
         const { data: etudiant, error } = await supabase
         .from('etudiant')
         .select('nom, email, CNI, CNE, code, filière, age')
-        .eq('nom', "Amine Aouragh")
+        .order('nom', {ascending: true})
+        .limit(1)
         setNomEtud(etudiant[0].nom)
         setEmailEtud(etudiant[0].email)
         setFiliereEtud(etudiant[0].filière)
