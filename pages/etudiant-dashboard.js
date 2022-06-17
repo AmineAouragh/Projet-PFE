@@ -22,7 +22,7 @@ export default function EtudiantDashboard() {
         .order('nom', {ascending: true})
         .limit(1)
         setNom(etudiant[0].nom)
-        setEmail(etudiant[0].email)
+        setEmail(etudiant[0].email) 
     }
 
     return (
