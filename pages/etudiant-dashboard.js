@@ -18,8 +18,8 @@ export default function EtudiantDashboard() {
     async function getStudentRecord() {
         const { data: etudiant, error } = await supabase
         .from('etudiant')
-        .select('nom, email, code, CNI, CNE, age')
-        .order('nom', {ascending: true})
+        .select('id, nom, email, code, CNI, CNE, age')
+        .order('id', {ascending: true})
         .limit(1)
         setNom(etudiant[0].nom)
         setEmail(etudiant[0].email) 
