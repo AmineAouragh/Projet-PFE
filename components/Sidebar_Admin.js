@@ -50,7 +50,7 @@ export function Sidebar_Admin(props) {
                     </a>
                     </Link>
 
-                    <Link href="/ajouter-un-etudiant">
+                    <Link href="/gestion-etudiant">
                     <a className={`py-3 px-2 flex flex-row items-center ${props.bgNewColor} rounded-lg`}>
                         <Image
                           src={add}
@@ -58,11 +58,11 @@ export function Sidebar_Admin(props) {
                           width={40}
                           alt="" 
                         />
-                        <span className="pb-1 ml-2 md:pb-0 text-lg text-center font-bold text-orange-400 font-Ubuntu">Nouveau étudiant</span>
+                        <span className="pb-1 ml-2 md:pb-0 text-lg text-center font-bold text-orange-400 font-Ubuntu">Gestion étudiant</span>
                     </a>
                     </Link>
 
-                    <Link href="/ajouter-un-professeur">
+                    <Link href="/gestion-professeur">
                     <a className={`py-3 px-2 flex flex-row items-center ${props.bgNewProfColor} rounded-lg`}>
                         <Image
                           src={add}
@@ -70,7 +70,7 @@ export function Sidebar_Admin(props) {
                           width={40}
                           alt="" 
                         />
-                        <span className="pb-1 ml-2 md:pb-0 text-lg text-center font-bold text-orange-400 font-Ubuntu">Nouveau professeur</span>
+                        <span className="pb-1 ml-2 md:pb-0 text-lg text-center font-bold text-orange-400 font-Ubuntu">Gestion professeur</span>
                     </a>
                     </Link>
                    
