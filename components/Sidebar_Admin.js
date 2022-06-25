@@ -39,7 +39,7 @@ export function Sidebar_Admin(props) {
                 </div>
                 <ul className="flex flex-col mt-10 pl-6 text-center justify-around">
                   <Link href="/admin-dashboard">
-                    <a className={`flex flex-row items-center px-2 py-3 ${props.bgDashColor}  rounded-lg`}>
+                    <a className="flex flex-row items-center px-2 py-3 hover:bg-gray-300 rounded-lg">
                         <Image 
                           src={dashboard} 
                           height={40} 
@@ -51,7 +51,7 @@ export function Sidebar_Admin(props) {
                     </Link>
 
                     <Link href="/gestion-etudiant">
-                    <a className={`py-3 px-2 flex flex-row items-center ${props.bgNewColor} rounded-lg`}>
+                    <a className="py-3 px-2 flex flex-row items-center hover:bg-gray-300 rounded-lg">
                         <Image
                           src={add}
                           height={40}  
@@ -63,7 +63,7 @@ export function Sidebar_Admin(props) {
                     </Link>
 
                     <Link href="/gestion-professeur">
-                    <a className={`py-3 px-2 flex flex-row items-center ${props.bgNewProfColor} rounded-lg`}>
+                    <a className="py-3 px-2 flex flex-row items-center rounded-lg hover:bg-gray-300">
                         <Image
                           src={add}
                           height={40}  
@@ -75,7 +75,7 @@ export function Sidebar_Admin(props) {
                     </Link>
                    
                     <Link href="/etudiants">
-                    <a className={`py-3 px-2 flex flex-row items-center ${props.bgEtudColor} rounded-lg`}>
+                    <a className="py-3 px-2 flex flex-row items-center hover:bg-gray-300 rounded-lg">
                         <Image
                           src={student}
                           height={40}  
@@ -86,7 +86,7 @@ export function Sidebar_Admin(props) {
                     </a>
                     </Link>   
                     <Link href="/professeurs">
-                    <a className={`py-3 px-2 flex flex-row items-center ${props.bgProfColor} rounded-lg`}>
+                    <a className="py-3 px-2 flex flex-row items-center hover:bg-gray-300 rounded-lg">
                         <Image
                           src={teacher}
                           height={40}  

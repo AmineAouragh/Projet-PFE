@@ -54,7 +54,6 @@ export default function AjouterEtudiant() {
         .from('etudiant')
         .update({ "CNE": cne, "CNI": cni, "age": age, "email": email, "filière": filiere, "code": code })
         .match({ "nom": nom })
-        console.log(updateClicked)
         setTimeout(() => router.push('/etudiants'), 800)
       }
 

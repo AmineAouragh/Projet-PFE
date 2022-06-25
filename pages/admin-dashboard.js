@@ -21,7 +21,6 @@ export default function AdminDashboard() {
         .from('admin')
         .select('nom, email, code, université')
         .eq('nom', "test")
-        console.log(admin[0].code)
         setNom(admin[0].nom)
         setEmail(admin[0].email)
         setUniversité(admin[0].université)
@@ -29,7 +28,7 @@ export default function AdminDashboard() {
 
     return (
         <div className="flex flex-row">
-            <Sidebar_Admin nom={nom} email={email} université={université} bgDashColor="bg-gray-100" />
+            <Sidebar_Admin nom={nom} email={email} université={université} />
             <BoardAdmin />
         </div>
     )
