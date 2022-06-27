@@ -19,11 +19,19 @@ export default function AjouterProfesseur() {
     const [ addClicked, setAddClicked ] = useState(false)
     const [ updateClicked, setUpdateClicked ] = useState(false)
     const [ deleteClicked, setDeleteClicked ] = useState(false)
+    const [ filiere, setFiliere ] = useState('')
+    const [ mod, setMod ] = useState('')
+    const [ groupe, setGroupe ] = useState([])
+    const [ mods, setMods ] = useState([])
 
     const router = useRouter()
 
     useEffect(() => {
         getAdminRecord()
+      })
+
+      useEffect(() => {
+        getClasseRecord()
       })
     
       async function getAdminRecord() {
@@ -37,12 +45,18 @@ export default function AjouterProfesseur() {
     
       }
 
+      const addModule = async () => {
+        const { data, error } = await supabase
+        .from('professeur')
+        .update('module_enseigné', mod)
+      }
+
 
       const addProf = async () => {
         const { data, error } = await supabase
         .from("professeur")
         .insert([
-          {'nom': nom, 'université': université, "email": email, "code": code}
+          {'nom': nom, 'université': université, "email": email, "code": code, "module_enseigné": mod}
         ])
         router.push('/professeurs')
       }
@@ -50,7 +64,7 @@ export default function AjouterProfesseur() {
       const updateProf = async () => {
         const { data, error } = await supabase
         .from('professeur')
-        .update({"université": université, "email": email, "code": code })
+        .update({"université": université, "email": email, "code": code, "module_enseigné": mod })
         .match({ "nom": nom })
         router.push('/professeurs')
       }
@@ -62,6 +76,24 @@ export default function AjouterProfesseur() {
         .match({ "nom": nom, "code": code })
         router.push('/professeurs') 
       }
+
+      const getClasseRecord = async () => {
+        const { data: filiere, error } = await supabase
+        .from('filiere')
+        .select('name')
+        setGroupe(filiere)
+      }
+
+      const getModuleRecord = async () => {
+        const { data: mod, error } = await supabase
+        .from('filiere')
+        .select('modules[]')
+        .eq('name', filiere)
+        //setMods(mod)
+        setMods(mod[0].modules)
+        console.log(mods)
+      }
+
 
     return (
         <div className="flex flex-row relative">
@@ -135,6 +167,21 @@ export default function AjouterProfesseur() {
                   value={code} onChange={e => setCode(e.target.value)} 
                   required className="w-128 mb-4" 
                 />
+                <label htmlFor="filiere" className="mr-3">
+                  Assigner une filière au professeur
+                </label>
+                <select className="w-128 mb-4" name="filiere" id="filiere" value={filiere} onChange={e => setFiliere(e.target.value)}>
+                  {groupe.map(grp => <option id={grp.id} key={grp.id} name={grp.name} value={grp.name}>{grp.name}</option>)}
+                </select>
+                
+                <button type="button" className="bg-orange-400 w-60 rounded-lg px-3 py-3 font-bold text-lg" onClick={getModuleRecord}>Générer les modules</button>
+
+                <label htmlFor="module" className="mr-3">Module enseigné</label>
+                <select className="w-128 mb-4" id="module" onChange={e => setMod(e.target.value)} name="module" value={mod}>
+                  {
+                    mods && mods.map(cours => <option key={cours.id} id={cours.id} name={cours} value={cours}>{cours}</option>)
+                  }
+                </select>
                 <button type="submit" onClick={addProf} 
                   className="rounded-lg bg-green-500 px-3 py-2 w-40 text-Light font-extrabold text-lg"
                 >Ajouter</button>
@@ -176,6 +223,21 @@ export default function AjouterProfesseur() {
                 value={code} onChange={e => setCode(e.target.value)} 
                 required className="w-128 mb-4" 
               />
+              <label htmlFor="filiere" className="mr-3">
+                  Assigner une filière au professeur
+                </label>
+                <select className="w-128 mb-4" name="filiere" id="filiere" value={filiere} onChange={e => setFiliere(e.target.value)}>
+                  {groupe.map(grp => <option id={grp.id} key={grp.id} name={grp.name}>{grp.name}</option>)}
+                </select>
+                
+                <button type="button" className="bg-orange-400 w-60 rounded-lg px-3 py-3 font-bold text-lg" onClick={getModuleRecord}>Générer les modules</button>
+
+                <label htmlFor="module" className="mr-3">Module enseigné</label>
+                <select className="w-128 mb-4" id="module" onChange={e => setMod(e.target.value)} name="module" value={mod}>
+                  {
+                    mods && mods.map(cours => <option key={cours.id} id={cours.id} name={cours}>{cours}</option>)
+                  }
+                </select>
               <button type="submit" onClick={updateProf} 
                 className="rounded-lg bg-amber-500 hover:bg-amber-600 px-3 py-2 w-40 text-Light font-extrabold text-lg"
               >Modifier</button>

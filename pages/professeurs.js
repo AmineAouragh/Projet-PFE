@@ -46,7 +46,8 @@ const columns = [
     {key: 'nom', name: 'Nom & Prénom'},
     { key: 'code', name: 'Code'},
     {key: 'email', name: 'Email'},
-    {key: 'université', name: 'Université'}
+    {key: 'université', name: 'Université'},
+    {key: 'module_enseigné', name: 'Module Enseigné'}
   ];
 
   const rows = []

@@ -22,11 +22,16 @@ export default function AjouterEtudiant() {
     const [ addClicked, setAddClicked ] = useState(false)
     const [ updateClicked, setUpdateClicked ] = useState(false)
     const [ deleteClicked, setDeleteClicked ] = useState(false)
+    const [ groupe, setGroupe ] = useState([])
 
     const router = useRouter()
 
     useEffect(() => {
         getAdminRecord()
+      })
+
+      useEffect(() => {
+        getClasseRecord()
       })
     
       async function getAdminRecord() {
@@ -66,6 +71,26 @@ export default function AjouterEtudiant() {
         
       }
 
+      const getClasse = async () => {
+        const { data: etudiant, error } = await supabase
+        .from('etudiant')
+        .select(`
+          nom,
+          classe (
+            name
+          )
+        `)
+        .eq('nom', nom)
+        console.log(etudiant[0].classe.name)
+      }
+
+      const getClasseRecord = async () => {
+        const { data: filiere, error } = await supabase
+        .from('filiere')
+        .select('name')
+        setGroupe(filiere)
+      }
+
     return (
         <div className="flex flex-row relative">
             <Sidebar_Admin nom={nomA} email={emailA} université={universitéA} bgNewColor="bg-gray-100" />
@@ -96,6 +121,13 @@ export default function AjouterEtudiant() {
                     <Image src={supprimer} width={20} height={20} alt="" />
                     <span className="ml-3">Supprimer</span>
                 </button>
+                <input type="text" name="name" value={nom} onChange={(e) => setNom(e.target.value)} />
+                <button className="rounded-lg bg-gray-500 px-3 py-3" onClick={getClasse}>Classe</button>
+                <select>
+                    {
+                        groupe.map(grp => <option id={grp.id} name={grp.name}>{grp.name}</option>)
+                    }
+                </select>
                 </div>
             </div>
             }
