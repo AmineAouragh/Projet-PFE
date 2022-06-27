@@ -11,6 +11,8 @@ export default function TableEtudiantsA() {
   const [ université, setUniversité ] = useState('')
   const [ textarea, openTextarea ] = useState(false)
   const [ message, setMessage ] = useState('')
+  const [ mod, setMod ] = useState('')
+  const [ course, setCourse ] = useState('')
 
 
   useEffect(() => {
@@ -19,6 +21,10 @@ export default function TableEtudiantsA() {
 
   useEffect(() => {
     getAnnonceRecord()
+  })
+
+  useEffect(() => {
+    getModRecord()
   })
 
   async function getProfRecord() {
@@ -38,7 +44,7 @@ export default function TableEtudiantsA() {
     const { data, error } = await supabase
     .from('annonce')
     .insert([
-        {'message': message, 'emetteur': nom}
+        {'message': message, 'emetteur': nom, 'classe': course}
     ])
     setTimeout(() => getAnnonceRecord(), 1500)
   }
@@ -47,13 +53,23 @@ export default function TableEtudiantsA() {
     const { data: annonce, error } = await supabase
     .from('annonce')
     .select('*')
+    .eq('emetteur', nom)
     setAnnonces(annonce)
+  }
+
+  const getModRecord = async () => {
+    const { data: professeur, error } = await supabase
+    .from('professeur')
+    .select('email')
+    .eq('nom', nom)
+    setMod(professeur)
   }
 
     const columns = [
         { key: 'message', name: 'Message' },
         { key: 'emetteur', name: 'Emetteur'},
-        { key: 'created_at', name: 'Envoyé le'}
+        { key: 'created_at', name: 'Envoyé le'},
+        { key: 'classe', name: 'Envoyé à'}
     ]
 
     const rows = []
@@ -71,7 +87,12 @@ export default function TableEtudiantsA() {
                     
                     <button type="button" onClick={() => openTextarea(true)} className={`${textarea ? 'hidden' : 'visible'} rounded-md mt-4 px-3 py-2 bg-green-400 font-bold`}>Nouvelle annonce</button>
                     <div className={`${textarea == true ? 'visible' : 'hidden'} flex flex-row mt-4 items-center`}>
-                        <input type="text" value={message} onChange={e => setMessage(e.target.value)} className="border-0 bg-transparent font-bold w-128 rounded-lg" placeholder="Tapez votre annonce ou message ici" />
+                      <div className="flex flex-col">
+                        <input type="text" value={message} onChange={e => setMessage(e.target.value)} className="mb-3 border-0 bg-transparent font-bold w-128 rounded-lg" placeholder="Tapez votre annonce ou message ici" />
+                        <select className="w-60 bg-amber-500 ml-3 font-bold rounded-lg" onChange={e => setCourse(e.target.value)} value={course}>
+                          <option value="Module" name="Module" id="module">Module</option>
+                        </select>
+                      </div>
                         <button type="button" onClick={() => openTextarea(false)} className="rounded-md px-3 py-2 bg-red-400 hover:bg-red-500 font-bold ml-4">Annuler</button>
                         <button type="button" onClick={sendMessage} className="rounded-md px-3 py-2 bg-green-400 hover:bg-green-500 font-bold ml-4">Envoyer</button>
                     </div>

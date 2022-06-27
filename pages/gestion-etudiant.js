@@ -1,6 +1,6 @@
 import { supabase } from '../lib/initSupabase'
 import { Sidebar_Admin } from '../components/Sidebar_Admin'
-import { useState, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import ajouter from '../public/plus.png'
 import modifier from '../public/setting.png'
@@ -23,6 +23,11 @@ export default function AjouterEtudiant() {
     const [ updateClicked, setUpdateClicked ] = useState(false)
     const [ deleteClicked, setDeleteClicked ] = useState(false)
     const [ groupe, setGroupe ] = useState([])
+    const [ mods, setMods ] = useState([])
+    const [ mod, setMod ] = useState('')
+    const [ courses, setCourses ] = useState([])
+
+    const textRef = useRef()
 
     const router = useRouter()
 
@@ -49,7 +54,7 @@ export default function AjouterEtudiant() {
         const { data, error } = await supabase
         .from("etudiant")
         .insert([
-            {'CNE': cne, 'CNI': cni, "nom": nom, "age": age, "email": email, "filière": filiere, "code": code}
+            {'CNE': cne, 'CNI': cni, "nom": nom, "age": age, "email": email, "filière": filiere, "code": code, "modules": courses}
         ])
         setTimeout(() => router.push('/etudiants'), 800)
       }
@@ -57,7 +62,7 @@ export default function AjouterEtudiant() {
       const updateStudent = async () => {
         const { data, error } = await supabase
         .from('etudiant')
-        .update({ "CNE": cne, "CNI": cni, "age": age, "email": email, "filière": filiere, "code": code })
+        .update({ "CNE": cne, "CNI": cni, "age": age, "email": email, "filière": filiere, "code": code, "modules": courses })
         .match({ "nom": nom })
         setTimeout(() => router.push('/etudiants'), 800)
       }
@@ -69,6 +74,19 @@ export default function AjouterEtudiant() {
         .match({ "nom": nom, "CNE": cne })
         setTimeout(() => router.push('/etudiants'), 800)
         
+      }
+
+      const handleChange = (e) => {
+        const { value, checked } = e.target
+        if (checked) {
+            setCourses(courses => courses.concat(value))
+            console.log(courses)
+        }
+        else {
+            setCourses(  
+                courses => courses.filter(e => e !== value)
+            )
+        }
       }
 
       const getClasse = async () => {
@@ -89,6 +107,23 @@ export default function AjouterEtudiant() {
         .from('filiere')
         .select('name')
         setGroupe(filiere)
+      }
+
+      const insertModules = async () => {
+        const { data, error } = await supabase
+        .from('etudiant')
+        .insert([{ modules: ['one', 'two', 'three', 'four'] }])
+        .eq('nom', nom)
+      }
+
+      const getModuleRecord = async () => {
+        const { data: mod, error } = await supabase
+        .from('filiere')
+        .select('modules[]')
+        .eq('name', filiere)
+        //setMods(mod)
+        setMods(mod[0].modules)
+        console.log(mods)
       }
 
     return (
@@ -121,13 +156,7 @@ export default function AjouterEtudiant() {
                     <Image src={supprimer} width={20} height={20} alt="" />
                     <span className="ml-3">Supprimer</span>
                 </button>
-                <input type="text" name="name" value={nom} onChange={(e) => setNom(e.target.value)} />
-                <button className="rounded-lg bg-gray-500 px-3 py-3" onClick={getClasse}>Classe</button>
-                <select>
-                    {
-                        groupe.map(grp => <option id={grp.id} name={grp.name}>{grp.name}</option>)
-                    }
-                </select>
+                
                 </div>
             </div>
             }
@@ -147,19 +176,24 @@ export default function AjouterEtudiant() {
                     CNE:
                 </label>
                 <input type="text" id="cne" name="cne" value={cne} onChange={e => setCne(e.target.value)} required className="w-128 mb-4" />
+           
                 <label htmlFor="filiere" className="mr-3">
-                    Filière:
+                  Filière
                 </label>
-                <select className="w-128 mb-4" name="filiere" id="filiere" value={filiere} onChange={e=> setFiliere(e.target.value)}>
-                    <option name="smia s1/s2" value="SMIA S1/S2">SMIA S1/S2</option>
-                    <option name="smi s3/s4" value="SMI S3/S4">SMI S3/S4</option>
-                    <option name="smi s5/s6 bd" value="SMI S6 BD">SMI S5/S6 (BD)</option>
-                    <option name="smi s5/s6 reseaux" value="SMI S6 RESEAUX">SMI S5/S6 (Reseaux)</option>
-                    <option name="sma s3/s4" value="SMA S3/S4">SMA S3/S4</option>
-                    <option name="sma s5/s6" value="SMA S5/S6">SMA S5/S6</option>
-                    <option name="smpc s1/s2" value="SMPC S1/S2">SMPC S1/S2</option>
-                    <option name="smp s3/s4" value="SMP S3/S4">SMP S3/S4</option>
+                <select className="w-128 mb-4" name="filiere" id="filiere" value={filiere} onChange={e => setFiliere(e.target.value)}>
+                  {groupe.map(grp => <option id={grp.id} key={grp.id} name={grp.name} value={grp.name}>{grp.name}</option>)}
                 </select>
+                
+                <button type="button" className="bg-orange-400 w-60 rounded-lg px-3 py-3 font-bold text-lg" onClick={getModuleRecord}>Générer les modules</button>
+
+                <label htmlFor="module" className="mr-3 text-lg font-bold">Modules</label>
+                  {
+                    mods && mods.map(cours => 
+                    <div className="flex flex-row items-center mr-3"> 
+                      <input type="checkbox" className="mr-3 rounded-lg text-green-400" onChange={handleChange} name="modules" key={cours.id} id={cours.id} value={cours} />
+                      <label htmlFor={cours.id}>{cours}</label> 
+                    </div>)
+                  }
                 <label htmlFor="age" className="mr-3">
                     Age:
                 </label>
@@ -192,18 +226,22 @@ export default function AjouterEtudiant() {
                 </label>
                 <input type="text" id="cne" name="cne" value={cne} onChange={e => setCne(e.target.value)} required className="w-128 mb-4" />
                 <label htmlFor="filiere" className="mr-3">
-                    Filière:
+                  Filière
                 </label>
-                <select className="w-128 mb-4" name="filiere" id="filiere" value={filiere} onChange={e=> setFiliere(e.target.value)}>
-                    <option name="smia s1/s2" value="SMIA S1/S2">SMIA S1/S2</option>
-                    <option name="smi s3/s4" value="SMI S3/S4">SMI S3/S4</option>
-                    <option name="smi s5/s6 bd" value="SMI S6 BD">SMI S5/S6 (BD)</option>
-                    <option name="smi s5/s6 reseaux" value="SMI S6 RESEAUX">SMI S5/S6 (Reseaux)</option>
-                    <option name="sma s3/s4" value="SMA S3/S4">SMA S3/S4</option>
-                    <option name="sma s5/s6" value="SMA S5/S6">SMA S5/S6</option>
-                    <option name="smpc s1/s2" value="SMPC S1/S2">SMPC S1/S2</option>
-                    <option name="smp s3/s4" value="SMP S3/S4">SMP S3/S4</option>
+                <select className="w-128 mb-4" name="filiere" id="filiere" value={filiere} onChange={e => setFiliere(e.target.value)}>
+                  {groupe.map(grp => <option id={grp.id} key={grp.id} name={grp.name} value={grp.name}>{grp.name}</option>)}
                 </select>
+                
+                <button type="button" className="bg-orange-400 w-60 rounded-lg px-3 py-3 font-bold text-lg" onClick={getModuleRecord}>Générer les modules</button>
+
+                <label htmlFor="module" className="mr-3 text-lg font-bold">Modules</label>
+                  {
+                    mods && mods.map(cours => 
+                    <div className="flex flex-row items-center mr-3"> 
+                      <input type="checkbox" className="mr-3 rounded-lg text-green-400" onChange={handleChange} name="modules" key={cours.id} id={cours.id} value={cours} />
+                      <label htmlFor={cours.id}>{cours}</label> 
+                    </div>)
+                  }
                 <label htmlFor="age" className="mr-3">
                     Age:
                 </label>

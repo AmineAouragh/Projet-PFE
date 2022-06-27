@@ -227,7 +227,7 @@ export default function AjouterProfesseur() {
                   Assigner une filière au professeur
                 </label>
                 <select className="w-128 mb-4" name="filiere" id="filiere" value={filiere} onChange={e => setFiliere(e.target.value)}>
-                  {groupe.map(grp => <option id={grp.id} key={grp.id} name={grp.name}>{grp.name}</option>)}
+                  {groupe.map(grp => <option id={grp.id} key={grp.id} name={grp.name} value={grp.name}>{grp.name}</option>)}
                 </select>
                 
                 <button type="button" className="bg-orange-400 w-60 rounded-lg px-3 py-3 font-bold text-lg" onClick={getModuleRecord}>Générer les modules</button>
@@ -235,7 +235,7 @@ export default function AjouterProfesseur() {
                 <label htmlFor="module" className="mr-3">Module enseigné</label>
                 <select className="w-128 mb-4" id="module" onChange={e => setMod(e.target.value)} name="module" value={mod}>
                   {
-                    mods && mods.map(cours => <option key={cours.id} id={cours.id} name={cours}>{cours}</option>)
+                    mods && mods.map(cours => <option key={cours.id} id={cours.id} name={cours} value={cours}>{cours}</option>)
                   }
                 </select>
               <button type="submit" onClick={updateProf} 
