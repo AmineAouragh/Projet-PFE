@@ -55,7 +55,7 @@ const columns = [
   professeurs.map(professeur => rows.push(professeur))
 
     return (
-        <div className="flex flex-row relative">
+        <div className="flex flex-row">
             <Sidebar_Admin nom={nomA} email={emailA} université={universitéA} bgProfColor="bg-gray-100" />
             <div className="main-content flex-1 relative bg-orange-100 pb-24 md:pb-5">
             <div className="bg-gray-800 pt-3 ">
