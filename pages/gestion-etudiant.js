@@ -140,7 +140,7 @@ export default function AjouterEtudiant() {
               <div className="m-5">
                 <ul className="mb-10">
                     <li className="text-lg">- Pour créer un nouveau compte étudiant, cliquez sur &quot;Ajouter&quot; puis remplissez le formulaire avec les infos convenables.</li>
-                    <li className="text-lg">- Pour modifier un compte étudiant déjà créé, cliquez d'abord sur &quot;Modifier&quot;, saisissez le nom de l&apos;étudiant que vous voulez modifier et puis remplissez le formulaire</li>
+                    <li className="text-lg">- Pour modifier un compte étudiant déjà créé, cliquez d&apos;abord sur &quot;Modifier&quot;, saisissez le nom de l&apos;étudiant que vous voulez modifier et puis remplissez le formulaire</li>
                     <li className="text-lg">- Pour supprimer un compte étudiant, cliquez sur &quot;Supprimer&quot;</li>
                 </ul>
                 <div className="flex flex-col">
