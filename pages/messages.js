@@ -17,21 +17,24 @@ export default function Messages() {
     const [ date, setDate ] = useState('')
     const [ emetteur, setEmetteur ] = useState('')
     const [ annonces, setAnnonces ] = useState([])
+    const [ mods, setMods ] = useState([])
 
     async function getStudentRecord() {
         const { data: etudiant, error } = await supabase
         .from('etudiant')
-        .select('id, nom, email')
+        .select('id, nom, email, modules')
         .order('id', {ascending: false})
         .limit(1)
         setNomEtud(etudiant[0].nom)
         setEmailEtud(etudiant[0].email)
+        setMods(etudiant[0].modules)
     }
 
     async function getAnnonceRecord() {
         const { data: annonce, error } = await supabase 
         .from('annonce')
-        .select('message, emetteur, created_at')
+        .select('message, emetteur, created_at, classe')
+        
         setAnnonces(annonce)
     }
 
@@ -48,8 +51,8 @@ export default function Messages() {
                 {
                   annonces.map(annonce => 
                     <div className="mb-4" key={annonce.id}>
-                      <p className="text-gray-800 font-extrabold" key={annonce.id}>Envoyé par {annonce.emetteur}</p>
-                      <p className="text-lg text-gray-600 font-bold" key={annonce.id}>{annonce.message}</p>
+                      {mods.includes(annonce.classe) && <p className="text-gray-800 text-xl mb-2 font-extrabold" key={annonce.id}>Envoyé par {annonce.emetteur}</p>}
+                      {mods.includes(annonce.classe) && <p className="text-lg text-gray-600 font-bold" key={annonce.id}><span className="bg-indigo-500 py-1 px-2 text-Light rounded-lg">@{annonce.classe}</span> {annonce.message}</p>}
                     </div>
                   )
                 }

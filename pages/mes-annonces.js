@@ -23,20 +23,17 @@ export default function TableEtudiantsA() {
     getAnnonceRecord()
   })
 
-  useEffect(() => {
-    getModRecord()
-  })
 
   async function getProfRecord() {
       const { data: professeur, error } = await supabase
       .from('professeur')
-      .select('id, nom, email, code, université')
+      .select('id, nom, email, code, université, module_enseigné')
       .order('id', {ascending: false})
       .limit(1)
       setNom(professeur[0].nom)
       setEmail(professeur[0].email)
       setUniversité(professeur[0].université)
-
+      setMod(professeur[0].module_enseigné)
   }
 
   async function sendMessage() {
@@ -57,19 +54,11 @@ export default function TableEtudiantsA() {
     setAnnonces(annonce)
   }
 
-  const getModRecord = async () => {
-    const { data: professeur, error } = await supabase
-    .from('professeur')
-    .select('email')
-    .eq('nom', nom)
-    setMod(professeur)
-  }
-
     const columns = [
         { key: 'message', name: 'Message' },
         { key: 'emetteur', name: 'Emetteur'},
         { key: 'created_at', name: 'Envoyé le'},
-        { key: 'classe', name: 'Envoyé à'}
+        { key: 'classe', name: 'Envoyé à la classe'}
     ]
 
     const rows = []
@@ -90,7 +79,8 @@ export default function TableEtudiantsA() {
                       <div className="flex flex-col">
                         <input type="text" value={message} onChange={e => setMessage(e.target.value)} className="mb-3 border-0 bg-transparent font-bold w-128 rounded-lg" placeholder="Tapez votre annonce ou message ici" />
                         <select className="w-60 bg-amber-500 ml-3 font-bold rounded-lg" onChange={e => setCourse(e.target.value)} value={course}>
-                          <option value="Module" name="Module" id="module">Module</option>
+                          <option value="--">--</option>
+                          <option value={mod} name={mod} id="module">{mod}</option>
                         </select>
                       </div>
                         <button type="button" onClick={() => openTextarea(false)} className="rounded-md px-3 py-2 bg-red-400 hover:bg-red-500 font-bold ml-4">Annuler</button>
