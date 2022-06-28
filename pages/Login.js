@@ -29,6 +29,10 @@ export default function Login() {
     if (professeur[0].code == codeP && professeur[0].email == emailP) {
       console.log("welcome to your dashboard")
       setTimeout(() => router.push('/professeur-dashboard'), 1000)
+    } else if (professeur[0].code !== codeP && professeur[0].email == emailP) {
+      alert("Vous n'avez pas saisi le bon code.")
+    } else if (professeur[0].code == codeP && professeur[0].email !== emailP) {
+      alert("Vous n'avez pas saisi le bon email.")
     } else {
       alert("Désolé vous ne pouvez pas accéder au tableau de bord pour les raisons suivantes:\n1) Vous avez saisi de fausses informations\n2) Vous n'avez pas de compte.")
     }
@@ -45,6 +49,10 @@ export default function Login() {
     if (admin[0].code == codeAdmin && admin[0].email == emailAdmin) {
       console.log("welcome to your dashboard")
       setTimeout(() => router.push('/admin-dashboard'), 1000)
+    }  else if (admin[0].code !== codeAdmin && admin[0].email == emailAdmin) {
+        alert("Vous n'avez pas saisi le bon code.")
+      } else if (admin[0].code == codeAdmin && admin[0].email !== emailAdmin) {
+        alert("Vous n'avez pas saisi le bon email.")
     } else {
       alert("Désolé vous ne pouvez pas accéder au tableau de bord pour les raisons suivantes:\n1) Vous avez saisi de fausses informations\n2) Vous n'avez pas de compte administrateur")
 
