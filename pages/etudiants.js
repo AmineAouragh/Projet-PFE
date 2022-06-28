@@ -60,7 +60,7 @@ export default function TableEtudiantsA() {
                     <h3 className="font-bold pl-2">Etudiants</h3>
                 </div>
             </div>
-            <DataGrid columns={columns} rows={rows} className="h-full absolute" />
+            <DataGrid columns={columns} rows={rows} className="h-full w-full absolute" />
             </div>
             
         </div>
