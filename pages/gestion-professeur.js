@@ -111,9 +111,9 @@ export default function AjouterProfesseur() {
             {(addClicked == false && updateClicked == false && deleteClicked == false) && 
             <div className="m-5">
               <ul className="mb-10">
-                <li className="text-lg">- Pour créer un nouveau compte professeur, cliquez sur "Ajouter" puis remplissez le formulaire avec les infos convenables.</li>
-                <li className="text-lg">- Pour modifier un compte professeur déjà créé, cliquez d'abord sur "Modifier", saisissez le nom du professeur que vous voulez modifier et puis remplissez le formulaire</li>
-                <li className="text-lg">- Pour supprimer un compte professeur, cliquez sur "Supprimer"</li>
+                <li className="text-lg">- Pour créer un nouveau compte professeur, cliquez sur &quot;Ajouter&quot; puis remplissez le formulaire avec les infos convenables.</li>
+                <li className="text-lg">- Pour modifier un compte professeur déjà créé, cliquez d'abord sur &quot;Modifier&quot;, saisissez le nom du professeur que vous voulez modifier et puis remplissez le formulaire</li>
+                <li className="text-lg">- Pour supprimer un compte professeur, cliquez sur &quot;Supprimer&quot;</li>
               </ul>
             <div className="flex flex-col">
             <button type="submit" onClick={() => setAddClicked(true)} className="flex items-center justify-center rounded-lg bg-green-500 hover:bg-green-400 px-3 py-3 w-60 text-Light font-extrabold text-lg mb-3">
