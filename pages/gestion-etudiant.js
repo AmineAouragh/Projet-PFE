@@ -237,7 +237,7 @@ export default function AjouterEtudiant() {
                 <label htmlFor="module" className="mr-3 text-lg font-bold">Modules</label>
                   {
                     mods && mods.map(cours => 
-                    <div className="flex flex-row items-center mr-3"> 
+                    <div className="flex flex-row items-center mr-3" key={cours.id}> 
                       <input type="checkbox" className="mr-3 rounded-lg text-green-400" onChange={handleChange} name="modules" key={cours.id} id={cours.id} value={cours} />
                       <label htmlFor={cours.id}>{cours}</label> 
                     </div>)
