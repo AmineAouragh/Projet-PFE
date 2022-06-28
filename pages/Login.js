@@ -30,7 +30,7 @@ export default function Login() {
       console.log("welcome to your dashboard")
       setTimeout(() => router.push('/professeur-dashboard'), 1000)
     } else {
-      alert("Désolé vous ne pouvez pas accéder au tableau de bord pour les raisons suivantes:\n1) Vous avez saisi de fausses informations\n2) Vus n'avez pas de compte.")
+      alert("Désolé vous ne pouvez pas accéder au tableau de bord pour les raisons suivantes:\n1) Vous avez saisi de fausses informations\n2) Vous n'avez pas de compte.")
     }
   }
 
@@ -46,7 +46,8 @@ export default function Login() {
       console.log("welcome to your dashboard")
       setTimeout(() => router.push('/admin-dashboard'), 1000)
     } else {
-      alert("Error")
+      alert("Désolé vous ne pouvez pas accéder au tableau de bord pour les raisons suivantes:\n1) Vous avez saisi de fausses informations\n2) Vous n'avez pas de compte administrateur")
+
     }
     
   }
