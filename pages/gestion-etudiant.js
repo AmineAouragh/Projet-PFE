@@ -139,9 +139,9 @@ export default function AjouterEtudiant() {
               (addClicked == false && updateClicked == false && deleteClicked == false) && 
               <div className="m-5">
                 <ul className="mb-10">
-                    <li className="text-lg">- Pour créer un nouveau compte étudiant, cliquez sur "Ajouter" puis remplissez le formulaire avec les infos convenables.</li>
-                    <li className="text-lg">- Pour modifier un compte étudiant déjà créé, cliquez d'abord sur "Modifier", saisissez le nom de l'étudiant que vous voulez modifier et puis remplissez le formulaire</li>
-                    <li className="text-lg">- Pour supprimer un compte étudiant, cliquez sur "Supprimer"</li>
+                    <li className="text-lg">- Pour créer un nouveau compte étudiant, cliquez sur &quot;Ajouter&quot; puis remplissez le formulaire avec les infos convenables.</li>
+                    <li className="text-lg">- Pour modifier un compte étudiant déjà créé, cliquez d'abord sur &quot;Modifier&quot;, saisissez le nom de l&apos;étudiant que vous voulez modifier et puis remplissez le formulaire</li>
+                    <li className="text-lg">- Pour supprimer un compte étudiant, cliquez sur &quot;Supprimer&quot;</li>
                 </ul>
                 <div className="flex flex-col">
                 <button type="submit" onClick={() => setAddClicked(true)} className="flex items-center justify-center rounded-lg bg-green-500 hover:bg-green-400 px-3 py-3 w-60 text-Light font-extrabold text-lg mb-3">
@@ -213,7 +213,7 @@ export default function AjouterEtudiant() {
               updateClicked &&
               <form className="m-5 flex flex-col">
                 <label htmlFor="name" className="mr-3 mb-2 text-lg font-bold">
-                    Nom & Prénom de l'étudiant à modifier:
+                    Nom & Prénom de l&apos;étudiant à modifier:
                 </label>
                 <input type="text" id="name" name="name" value={nom} onChange={e => setNom(e.target.value)} required className="w-128 mb-4" />
                 <p className="text-lg my-5 font-bold">Maintenant remplissez les informations pour cet étudiant</p>
@@ -261,12 +261,12 @@ export default function AjouterEtudiant() {
                 deleteClicked &&
                 <form className="m-5 flex flex-col">
                 <label htmlFor="name" className="mr-3 mb-2 text-lg font-bold">
-                    Nom & Prénom de l'étudiant à supprimer:
+                    Nom & Prénom de l&apos;étudiant à supprimer:
                 </label>
                 <input type="text" id="name" name="name" value={nom} onChange={e => setNom(e.target.value)} required className="w-128 mb-4" />
                
                 <label htmlFor="cne" className="mr-3 text-lg font-bold">
-                    CNE de l'étudiant à supprimer:
+                    CNE de l&apos;étudiant à supprimer:
                 </label>
                 <input type="text" id="cne" name="cne" value={cne} onChange={e => setCne(e.target.value)} required className="w-128 mb-4" />
                 
