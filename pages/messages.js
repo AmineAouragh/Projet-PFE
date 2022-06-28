@@ -51,7 +51,7 @@ export default function Messages() {
                 {
                   annonces.map(annonce => 
                     <div className="mb-4" key={annonce.id}>
-                      {mods.includes(annonce.classe) && <p className="text-gray-800 text-xl mb-2 font-extrabold" key={annonce.id}>Envoyé par {annonce.emetteur}</p>}
+                      {mods.includes(annonce.classe) && <p className="text-gray-800 text-xl mb-2 font-extrabold" key={annonce.id}>Professeur {annonce.emetteur} <span className="text-gray-400 text-lg">{annonce.created_at.split('T').join(' ').substring(0, 19)}</span></p>}
                       {mods.includes(annonce.classe) && <p className="text-lg text-gray-600 font-bold" key={annonce.id}><span className="bg-indigo-500 py-1 px-2 text-Light rounded-lg">@{annonce.classe}</span> {annonce.message}</p>}
                     </div>
                   )

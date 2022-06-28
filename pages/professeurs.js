@@ -55,15 +55,15 @@ const columns = [
   professeurs.map(professeur => rows.push(professeur))
 
     return (
-        <div className="flex flex-row">
+        <div className="flex flex-row relative">
             <Sidebar_Admin nom={nomA} email={emailA} université={universitéA} bgProfColor="bg-gray-100" />
-            <div className="main-content flex-1 bg-orange-100 pb-24 md:pb-5">
-            <div className="bg-gray-800 pt-3">
+            <div className="main-content flex-1 relative bg-orange-100 pb-24 md:pb-5">
+            <div className="bg-gray-800 pt-3 ">
                 <div className="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
                     <h3 className="font-bold pl-2">Professeurs</h3>
                 </div>
             </div>
-            <DataGrid columns={columns} rows={rows} />
+            <DataGrid columns={columns} rows={rows} className="h-full absolute" />
             </div>
         </div>
     )
