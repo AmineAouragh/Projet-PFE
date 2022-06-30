@@ -79,7 +79,7 @@ export default function Fichiers() {
               </div>
               <div className="m-5">
                 <a id={files.id} href={urlA} download>{files.name}</a>
-                <a href={url} target="_blank" noopener noreferrer>Lire fichier</a>
+                <a href={url} target="_blank" rel="noreferrer noopener">Lire fichier</a>
                 <a href={url} download>Telecharger</a>
               </div>
             </div>
