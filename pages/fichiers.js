@@ -20,7 +20,7 @@ export default function Fichiers() {
     const [ emailEtud, setEmailEtud ] = useState('')
     const [ files, setFiles ] = useState([])
     const [ file, setFile ] = useState()
-    const [ url, setUrl ] = useState('')
+    const [ Url, setUrl ] = useState('')
 
     async function getStudentRecord() {
         const { data: etudiant, error } = await supabase
@@ -65,7 +65,7 @@ export default function Fichiers() {
               <div className="m-5">
                 {files.map(file => <p key={file.id}>{file.name}</p>)}
                 <button type="button" className="bg-green-400 rounded-lg px-3 py-2 font-bold text-Light">
-                <a href={url} download>Telecharger</a>
+                <a href={Url} download>Telecharger</a>
                 </button>
               </div>
             </div>
