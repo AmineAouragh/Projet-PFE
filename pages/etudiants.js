@@ -43,7 +43,8 @@ export default function TableEtudiantsA() {
         { key: 'age', name: 'Age'},
         {key: 'filière', name: 'Filière'},
         {key: 'email', name: 'Email'},
-        {key: 'code', name: 'Code'}
+        {key: 'code', name: 'Code'},
+        {key: 'modules', name: 'Modules'}
       ];
 
       const rows = []

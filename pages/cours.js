@@ -32,8 +32,7 @@ export default function Cours() {
       const handleSubmit = async (e) => {
           e.preventDefault()
 
-            const fileName = file.name
-            const filePath = fileName
+            const filePath = file.name
 
           if (file) {
             
@@ -68,7 +67,7 @@ export default function Cours() {
               <button type="submit" className="bg-orange-400 rounded-xl px-5 py-2">Envoyer</button>
               </form>
 
-              {/*
+              {
                   url && (
                     <>
                     <button type="button" className="bg-green-500 px-5 py-3 rounded-xl ml-8 shadow-lg">
@@ -78,7 +77,7 @@ export default function Cours() {
                     </button>
                     </>
                   )
-                  */}
+                  }
               
             </div>
         </div>

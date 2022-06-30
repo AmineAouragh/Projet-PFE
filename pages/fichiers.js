@@ -12,6 +12,10 @@ export default function Fichiers() {
         getFiles()
     })
 
+    useEffect(() => {
+        downloadFile()
+    })
+
     const [ nomEtud, setNomEtud ] = useState('')
     const [ emailEtud, setEmailEtud ] = useState('')
     const [ files, setFiles ] = useState([])
@@ -38,7 +42,15 @@ export default function Fichiers() {
     }
 
         
+    async function downloadFile() {
+        const { data, error } = await supabase
+        .storage
+        .from('cours')
+        .download('document.pdf')
 
+        const url = URL.createObjectURL(data)
+        setUrl(url)
+    }
 
 
     return (
@@ -52,6 +64,9 @@ export default function Fichiers() {
               </div>
               <div className="m-5">
                 {files.map(file => <p key={file.id}>{file.name}</p>)}
+                <button type="button" className="bg-green-400 rounded-lg px-3 py-2 font-bold text-Light">
+                <a href={url} download>Telecharger</a>
+                </button>
               </div>
             </div>
         </div>
