@@ -44,6 +44,7 @@ export default function Cours() {
         .storage
         .from('cours')
         .download(filePath)
+        console.log(filePath)
 
         const url = URL.createObjectURL(data)
         setUrl(url)

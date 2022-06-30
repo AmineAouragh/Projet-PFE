@@ -15,11 +15,12 @@ export default function MesInfos() {
     const [ cniEtud, setCniEtud ] = useState('')
     const [ cneEtud, setCneEtud ] = useState('')
     const [ ageEtud, setAgeEtud ] = useState('')
+    const [ modules, setModules ] = useState([])
 
     async function getStudentRecord() {
         const { data: etudiant, error } = await supabase
         .from('etudiant')
-        .select('id, nom, email, CNI, CNE, code, filière, age')
+        .select('id, nom, email, CNI, CNE, code, filière, age, modules')
         .order('id', {ascending: false})
         .limit(1)
         setNomEtud(etudiant[0].nom)
@@ -29,6 +30,7 @@ export default function MesInfos() {
         setCniEtud(etudiant[0].CNI)
         setCneEtud(etudiant[0].CNE)
         setAgeEtud(etudiant[0].age)
+        setModules(etudiant[0].modules)
       }
 
     return (
@@ -46,6 +48,10 @@ export default function MesInfos() {
                 <p className="font-extrabold text-xl">CNI: </p> {cniEtud}
                 <p className="font-extrabold text-xl">Age: </p> {ageEtud}
                 <p className="font-extrabold text-xl">Filière: </p> {filiereEtud}
+                <ul>
+                  <p className="font-extrabold text-xl">Modules</p>
+                {modules.map(mod => <li key={mod} className="ml-4">- {mod}</li>)}
+                </ul>
                 <p className="font-extrabold text-xl">Email </p> {emailEtud}
                 <p className="font-extrabold text-xl">Code: </p> {codeEtud}
               </div>

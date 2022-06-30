@@ -16,11 +16,14 @@ export default function Fichiers() {
         downloadFile()
     })
 
+    
+
     const [ nomEtud, setNomEtud ] = useState('')
     const [ emailEtud, setEmailEtud ] = useState('')
     const [ files, setFiles ] = useState([])
     const [ file, setFile ] = useState()
-    const [ Url, setUrl ] = useState('')
+    const [ url, setUrl ] = useState('')
+    const [ urlA, setUrlA ] = useState('')
 
     async function getStudentRecord() {
         const { data: etudiant, error } = await supabase
@@ -37,8 +40,14 @@ export default function Fichiers() {
         .storage
         .from('cours')
         .list()
-        setFiles(data)
-        console.log(data)
+        setFiles(data[1])
+
+        try {
+            const urlA = URL.createObjectURL(files)
+            setUrlA(urlA)
+        } catch (err) {
+            console.log(err)
+        }
     }
 
         
@@ -46,10 +55,16 @@ export default function Fichiers() {
         const { data, error } = await supabase
         .storage
         .from('cours')
-        .download('document.pdf')
+        .download('trial.pdf')
 
-        const url = URL.createObjectURL(data)
-        setUrl(url)
+        try {
+            const url = URL.createObjectURL(data)
+            setUrl(url)
+        } catch (error) {
+            console.log(error)
+        } 
+       // console.clear();
+        
     }
 
 
@@ -63,10 +78,9 @@ export default function Fichiers() {
                 </div>
               </div>
               <div className="m-5">
-                {files.map(file => <p key={file.id}>{file.name}</p>)}
-                <button type="button" className="bg-green-400 rounded-lg px-3 py-2 font-bold text-Light">
-                <a href={Url} download>Telecharger</a>
-                </button>
+                <a id={files.id} href={urlA} download>{files.name}</a>
+                <a href={url} target="_blank">Lire fichier</a>
+                <a href={url} download>Telecharger</a>
               </div>
             </div>
         </div>
