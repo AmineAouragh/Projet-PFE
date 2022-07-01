@@ -9,7 +9,7 @@ export default function Fichiers() {
     })
 
     useEffect(() => {
-        getFiles()
+        download()
     })
 
     useEffect(() => {
@@ -20,10 +20,12 @@ export default function Fichiers() {
 
     const [ nomEtud, setNomEtud ] = useState('')
     const [ emailEtud, setEmailEtud ] = useState('')
-    const [ files, setFiles ] = useState([])
     const [ file, setFile ] = useState()
     const [ url, setUrl ] = useState('')
     const [ urlA, setUrlA ] = useState('')
+    const [ lire, setLire ] = useState(false)
+    const [ telecharger, setTelecharger ] = useState(false)
+    const [ fileName, setFileName ] = useState('')
 
     async function getStudentRecord() {
         const { data: etudiant, error } = await supabase
@@ -35,19 +37,15 @@ export default function Fichiers() {
         setEmailEtud(etudiant[0].email)
     }
 
-    async function getFiles() {
-        const { data, error } = await supabase 
-        .storage
-        .from('cours')
-        .list()
-        setFiles(data[1])
 
-        try {
-            const urlA = URL.createObjectURL(files)
-            setUrlA(urlA)
-        } catch (err) {
-            console.log(err)
-        }
+    async function download() {
+        const { data: fichier, error } = await supabase
+        .from('fichier')
+        .select('id, nom, Lire, Telecharger')
+        setFileName(fichier[0].nom)
+        setTelecharger(fichier[0].Telecharger)
+        setLire(fichier[0].Lire)
+        setFile(fichier)
     }
 
         
@@ -55,7 +53,7 @@ export default function Fichiers() {
         const { data, error } = await supabase
         .storage
         .from('cours')
-        .download('trial.pdf')
+        .download(fileName)
 
         try {
             const url = URL.createObjectURL(data)
@@ -63,7 +61,7 @@ export default function Fichiers() {
         } catch (error) {
             console.log(error)
         } 
-       // console.clear();
+        console.clear()
         
     }
 
@@ -78,9 +76,32 @@ export default function Fichiers() {
                 </div>
               </div>
               <div className="m-5">
-                <a id={files.id} href={urlA} download>{files.name}</a>
-                <a href={url} target="_blank" rel="noreferrer noopener">Lire fichier</a>
-                <a href={url} download>Telecharger</a>
+                
+                  
+                      <div className="flex flex-row items-center">
+                        <p className="mr-5">{fileName}</p>
+                        <p className="mr-3">{
+                          lire.toString() == "true"
+                          ?
+                          <button type="button" className="bg-amber-400 font-bold text-lg rounded-lg px-3 py-2 mr-4">
+                          <a href={url} target="_blank" rel="noreferrer noopener">Lire fichier</a>
+                          </button>
+                          :
+                            "Vous ne pouvez pas lire ce fichier"
+                        }</p>
+                        <p> {
+                              telecharger.toString() == "true" 
+                              ? 
+                                <button type="button" className="bg-cyan-500 font-bold text-lg text-Light rounded-lg px-3 py-2">
+                                  <a href={url} download>Telecharger</a>
+                                </button> 
+                              : "Vous ne pouvez pas télécharger"
+                            }
+                        </p>
+                      </div>
+                  
+               
+                
               </div>
             </div>
         </div>

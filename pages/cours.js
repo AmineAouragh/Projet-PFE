@@ -10,6 +10,8 @@ export default function Cours() {
     const [ université, setUniversité ] = useState('')
     const [ file, setFile ] = useState()
     const [ url, setUrl ] = useState('')
+    const [ telecharger, setTelecharger ] = useState(false)
+    const [ lire, setLire ] = useState(false)
 
     useEffect(() => {
         getProfRecord()
@@ -27,7 +29,33 @@ export default function Cours() {
     
       }
 
-      
+      async function setDroits () {
+        const { data, error } = await supabase
+        .from('fichier')
+        .insert([
+          {'Telecharger': telecharger, 'Lire': lire, 'nom': file.name}
+        ])
+      }
+
+      function handleChange(ev) {
+        if (ev.target.checked) {
+          if (ev.target.value == "Lire") {
+            setLire(true)
+            console.log("Peut lire: " +lire)
+          } else if (ev.target.value == "Telecharger") {
+            setTelecharger(true)
+            console.log("Peut telecharger: " +telecharger)
+          }
+        } else {
+          if (ev.target.value == 'Lire') {
+            setLire(false)
+            console.log("Peut lire: " +lire)
+          } else if (ev.target.value == "Telecharger") {
+            setTelecharger(false)
+            console.log("Peut telecharger: " +telecharger)
+          }
+        }
+      }
 
       const handleSubmit = async (e) => {
           e.preventDefault()
@@ -39,6 +67,8 @@ export default function Cours() {
               const { data, error } = await supabase.storage.from('cours').upload(filePath, file)
 
           }
+
+          setDroits()
           
           const { data, error } = await supabase
         .storage
@@ -46,8 +76,13 @@ export default function Cours() {
         .download(filePath)
         console.log(filePath)
 
-        const url = URL.createObjectURL(data)
+        try {
+          const url = URL.createObjectURL(data)
         setUrl(url)
+        } catch(err) {
+          console.log(err)
+        }
+        
 
       }
 
@@ -60,12 +95,17 @@ export default function Cours() {
                     <h3 className="font-bold pl-2">Cours</h3>
                 </div>
               </div>
-              <form onSubmit={handleSubmit} className="ml-8 my-10">
-              <label htmlFor="cours" className="font-Secular text-xl mb-10 font-bold">Ajouter un cours</label>
+              <form onSubmit={handleSubmit} className="ml-8 my-10 flex flex-col">
+              <label htmlFor="cours" className="font-Secular text-xl font-bold">Ajouter un cours</label>
               <br />
-              <input onChange={e => setFile(e.target.files[0])} type="file" id="cours" accept=".pdf" name="cours" />
-              
-              <button type="submit" className="bg-orange-400 rounded-xl px-5 py-2">Envoyer</button>
+              <input onChange={e => setFile(e.target.files[0])} type="file" id="cours" className="my-5" accept=".pdf" name="cours" />
+              <div className="flex flex-row items-center mr-3">
+              <input type="checkbox" name="droit" value="Lire" onChange={handleChange} className="mr-3 rounded-lg text-green-400" /><label className="text-lg font-bold">Etudiant peut lire</label>
+              </div>
+              <div className="flex flex-row items-center mr-3 mb-5">
+              <input type="checkbox" name="droit" value="Telecharger" onChange={handleChange} className="mr-3 rounded-lg text-green-400"/><label className="text-lg font-bold">Etudiant peut telecharger</label>
+              </div>
+              <button type="submit" className="bg-orange-400 rounded-xl w-40 font-bold text-lg text-Light px-5 py-2">Envoyer</button>
               </form>
 
               {
