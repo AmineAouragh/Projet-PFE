@@ -28,6 +28,7 @@ export default function Fichiers() {
     const [ fileName, setFileName ] = useState('')
 
     async function getStudentRecord() {
+        try {
         const { data: etudiant, error } = await supabase
         .from('etudiant')
         .select('id, nom, email')
@@ -35,17 +36,23 @@ export default function Fichiers() {
         .limit(1)
         setNomEtud(etudiant[0].nom)
         setEmailEtud(etudiant[0].email)
+        } catch (err) {
+            console.log(err)
+        }
     }
 
 
     async function download() {
+        try {
         const { data: fichier, error } = await supabase
         .from('fichier')
         .select('id, nom, Lire, Telecharger')
         setFileName(fichier[0].nom)
         setTelecharger(fichier[0].Telecharger)
         setLire(fichier[0].Lire)
-        setFile(fichier)
+        } catch(err) {
+            console.log(err)
+        }
     }
 
         
