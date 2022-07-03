@@ -9,10 +9,16 @@ import Image from 'next/image'
 import { supabase } from '../lib/initSupabase'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 
 export function Sidebar_Professeur(props) {
 
+  const router = useRouter()
+
+  function logout() {
+    setTimeout(() => router.push('/Login'), 3000)
+  }
     return (
         <div className="bg-gray-800 shadow-xl h-16 fixed bottom-0 md:relative md:h-screen z-10 w-full md:w-60">
             <div className="md:w-60 mt-10 h-full md:fixed md:left-0 md:top-0 content-center md:content-start text-center justify-between">
@@ -81,7 +87,10 @@ export function Sidebar_Professeur(props) {
                         />
                         <span className="pb-1 ml-2 md:pb-0 text-xl text-center font-bold text-orange-400 font-Ubuntu">Annonces</span>
                     </a>
-                    </Link>             
+                    </Link>     
+                    <button type="button" onClick={logout} className="absolute bottom-16 rounded-lg bg-gray-300 text-lg px-3 py-2"> 
+                      Se déconnecter
+                    </button>          
                 </ul>
             </div>
 

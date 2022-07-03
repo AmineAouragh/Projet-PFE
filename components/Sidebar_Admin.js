@@ -10,8 +10,15 @@ import { supabase } from '../lib/initSupabase'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import add from '../public/add-user.png'
+import { useRouter } from 'next/router'
 
 export function Sidebar_Admin(props) {
+
+  const router = useRouter()
+
+  function logout() {
+    setTimeout(() => router.push('/Login'), 3000)
+  }
 
     return (
         <div className="bg-gray-800 shadow-xl h-16 fixed bottom-0 md:relative md:h-screen z-10 w-full md:w-60">
@@ -95,7 +102,10 @@ export function Sidebar_Admin(props) {
                         />
                         <span className="pb-1 ml-2 md:pb-0 text-lg text-center font-bold text-orange-400 font-Ubuntu">Professeurs</span>
                     </a>
-                    </Link>              
+                    </Link>  
+                    <button type="button" onClick={logout} className="absolute bottom-16 rounded-lg bg-gray-300 text-lg px-3 py-2"> 
+                      Se déconnecter
+                    </button>           
                 </ul>
             </div>
 
