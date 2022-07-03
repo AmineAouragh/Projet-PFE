@@ -26,7 +26,7 @@ export function Sidebar_Admin(props) {
                   {props.nom}
                 </p>
                 <div className="flex flex-col items-center justify-end">
-                  <p className="text-Light font-semibold italic font-Vietnam mb-1 text-lg">Administrateur à {props.université}</p>
+                  <p className="text-Light font-semibold italic font-Vietnam mb-1 text-lg">Administrateur</p>
                   <div className="flex flex-row items-center">
                     <Image
                       src={email_img} 
