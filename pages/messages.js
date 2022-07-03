@@ -44,6 +44,7 @@ export default function Messages() {
 
     return (
         <div className="flex flex-row relative">
+          
             <Sidebar_Etudiant nom={nomEtud} email={emailEtud} />
             <div className="main-content flex-1 bg-orange-100 pb-24 md:pb-5">
               <div className="bg-gray-800 pt-3">
