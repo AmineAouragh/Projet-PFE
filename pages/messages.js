@@ -31,11 +31,15 @@ export default function Messages() {
     }
 
     async function getAnnonceRecord() {
+      try {
         const { data: annonce, error } = await supabase 
         .from('annonce')
         .select('message, emetteur, created_at, classe')
         
         setAnnonces(annonce)
+      } catch (err) {
+        console.log(err)
+      }
     }
 
     return (

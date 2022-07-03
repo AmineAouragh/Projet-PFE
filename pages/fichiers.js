@@ -94,7 +94,7 @@ export default function Fichiers() {
                           <a href={url} target="_blank" rel="noreferrer noopener">Lire fichier</a>
                           </button>
                           :
-                            "Vous ne pouvez pas lire ce fichier"
+                            ""
                         }</p>
                         <p> {
                               telecharger.toString() == "true" 
@@ -102,7 +102,7 @@ export default function Fichiers() {
                                 <button type="button" className="bg-cyan-500 font-bold text-lg text-Light rounded-lg px-3 py-2">
                                   <a href={url} download>Telecharger</a>
                                 </button> 
-                              : "Vous ne pouvez pas télécharger"
+                              : ""
                             }
                         </p>
                       </div>
